@@ -22,9 +22,9 @@ if (($url = getenv('DATABASE_URL')) !== false) {
     // Configuración para entorno local:
     $host = 'localhost';
     $port = '5432';
-    $dbname = 'aprendeMas';
-    $username = 'aprendeMas';
-    $password = 'aprendeMas';
+    $dbname = 'aprendemas';
+    $username = 'aprendemas';
+    $password = 'aprendemas';
     $extra = [];
 }
 

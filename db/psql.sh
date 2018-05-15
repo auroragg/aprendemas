@@ -1,3 +1,3 @@
 #!/bin/sh
 
-psql -h localhost -U aprendeMas -d aprendeMas
+psql -h localhost -U aprendemas -d aprendemas
