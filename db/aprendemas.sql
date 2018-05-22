@@ -21,23 +21,32 @@ insert into roles (descripcion) values ('Invitado');
 insert into roles (descripcion) values ('Usuario');
 
 create table usuarios (
-  id_usuario bigserial constraint pk_usuarios primary key,
-  nombre varchar(45) not null,
-  user_pass varchar(32),
-  email varchar(75) not null,
+  id bigserial constraint pk_usuarios primary key,
+  username varchar(50) not null,
+  email varchar(80) not null,
+  password varchar(250) not null,
+  authkey varchar(250) not null,
+  accesstoken varchar(250) not null,
+  activate boolean not null default false,
   rol_id bigint references roles (id_rol) on delete no action on update cascade
 );
 
+insert into usuarios (username, email, password, authkey, accesstoken, activate, rol_id) values('aurora','aurora@gmail.com','auroragonzalez','aurora','aurora', true, 1);
+insert into usuarios (username, email, password, authkey, accesstoken, activate, rol_id) values('lolo','lolo@gmail.com','lologonzalez','lolo','lolo', true, 1);
+
+
 create table idiomas (
   id_idioma   bigserial constraint pk_idiomas primary key,
-  descripcion varchar(50) not null
+  descripcion varchar(50) not null,
+  icono varchar(100)
 );
 
-insert into idiomas (descripcion) values ('Español');
-insert into idiomas (descripcion) values ('Francés');
-insert into idiomas (descripcion) values ('Inglés');
-insert into idiomas (descripcion) values ('Alemán');
-insert into idiomas (descripcion) values ('Italiano');
+insert into idiomas (descripcion, icono) values ('Español', 'images/iconosBanderas/spain.png');
+insert into idiomas (descripcion, icono) values ('Francés', 'images/iconosBanderas/france.png');
+insert into idiomas (descripcion, icono) values ('Alemán', 'images/iconosBanderas/germany.png');
+insert into idiomas (descripcion, icono) values ('Inglés', 'images/iconosBanderas/england.png');
+insert into idiomas (descripcion, icono) values ('Italiano', 'images/iconosBanderas/italy.png');
+
 
 create table niveles (
     id_nivel bigserial constraint pk_niveles primary key,
@@ -68,7 +77,10 @@ create table apartados (
   contenido   text not null
 );
 
-/*insert into apartados (id_tema, titulo, contenido) values (1,'Apartado 1','');*/
+insert into apartados (id_tema, titulo, contenido) values (1,'Apartado 1','Significado  verbo To Be');
+insert into apartados (id_tema, titulo, contenido) values (1,'Apartado 2','Conjugacion en presente verbo To Be');
+insert into apartados (id_tema, titulo, contenido) values (1,'Apartado 3','Usos del verbo To Be');
+
 
 create table preguntas (
   id_pregunta bigserial constraint pk_preguntas primary key,
@@ -76,27 +88,41 @@ create table preguntas (
   pregunta    varchar(255) not null
 );
 
+insert into preguntas (id_apartado, pregunta) values (1,'¿Qué significa verbo To Be?');
+
+
 create table respuestas (
   id_respuesta bigserial constraint pk_respuestas primary key,
   id_pregunta  bigint    references preguntas (id_pregunta) on delete no action on update cascade,
   descripcion varchar(50)
 );
 
+insert into respuestas (id_pregunta, descripcion) values (1,'ser o estar');
+
 
 create table sesiones (
   id_sesion   bigserial constraint pk_sesiones primary key,
-  id_usuario  bigint not null references usuarios (id_usuario) on delete no action on update cascade,
+  id_usuario  bigint not null references usuarios (id) on delete no action on update cascade,
   id_idioma   bigint not null references idiomas (id_idioma) on delete no action on update cascade,
-  fecha       timestamp not null, --datetime??
-  exito       boolean not null default false
+  fecha       timestamp not null default current_timestamp,
+  fin         boolean not null default false
 );
+
+insert into sesiones (id_usuario, id_idioma, fin) values (1, 1, false);
+insert into sesiones (id_usuario, id_idioma, fin) values (1, 2, true);
+insert into sesiones (id_usuario, id_idioma, fin) values (1, 3, false);
 
 create table sesiones_apartados (
   id_sesion_apartado bigserial constraint pk_sesiones_apartados primary key,
   id_sesion bigint references sesiones (id_sesion) on delete no action on update cascade,
   id_apartado bigint references apartados (id_apartado) on delete no action on update cascade,
-  fecha timestamp not null --datetime???
+  fecha timestamp not null  default current_timestamp,
+  finalizado boolean not null default false
 );
+
+insert into sesiones_apartados (id_sesion, id_apartado, finalizado) values (1, 1, false);
+insert into sesiones_apartados (id_sesion, id_apartado, finalizado) values (1, 2, false);
+insert into sesiones_apartados (id_sesion, id_apartado, finalizado) values (1, 3, true);
 
 create table examen (
   id_examen bigserial constraint pk_examen primary key,
@@ -107,10 +133,11 @@ create table examen (
 
 create table resultados (
   id_resultado bigserial constraint pk_resultado primary key,
-  fecha timestamp not null,
+  fecha timestamp not null  default current_timestamp,
   id_sesion_apartado bigint references sesiones_apartados (id_sesion_apartado) on delete no action on update cascade,
   id_pregunta bigint references preguntas (id_pregunta) on delete no action on update cascade,
   id_respuesta bigint references respuestas (id_respuesta) on delete no action on update cascade,
   correcto boolean not null,
   puntuacion_minima integer not null
 );
+insert into resultados (id_sesion_apartado, id_pregunta, id_respuesta, correcto, puntuacion_minima) values (1, 1, 1, true, 8);

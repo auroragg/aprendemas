@@ -1,5 +1,7 @@
 <?php
 
 return [
-    'adminEmail' => 'admin@example.com',
+    'adminEmail' => 'tiradacata@gmail.com',
+    'title' => 'AprendeMas',
+    'salt' => 'fsddsflj38343lj0',
 ];

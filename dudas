@@ -1,0 +1,20 @@
+En sesiones controller cuando creo el array con las sesiones de un usuario para mostrarle
+los idomas que ya ha comenzado, como mando un array asociativo.
+
+¿Tengo que mandar un modelo o solo con el array?
+
+
+//requisitos
+-validacion formulario
+-ventanas
+-eventos
+-almacenamiento cliente
+-ayax
+-jquery
+-plugin
+
+-HTML5 semánticas
+-CSS
+-flexible
+-animaciones y multimedia
+-microdatos

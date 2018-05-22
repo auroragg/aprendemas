@@ -2,16 +2,24 @@
 
 /* @var $this yii\web\View */
 
-$this->title = 'My Yii Application';
+$this->title = 'AprendeMas';
 ?>
 <div class="site-index">
 
     <div class="jumbotron">
-        <h1>Congratulations!</h1>
+        <h1>Habla cualquier idioma</h1>
 
-        <p class="lead">You have successfully created your Yii-powered application.</p>
+        <p class="lead">dedicando sólo diez minutos al día</p>
 
-        <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
+        <p><?php if(!$logueado) { ?>
+                    <a class="btn btn-lg btn-success boton-sombra" href="http://localhost:8080/index.php?r=sesiones%2Findsesionesusuario">Empezar</a></p>
+                <?php } else { ?>
+                    <a class="col-xs-12 col-sm-3 col-sm-offset-2 btn btn-lg btn-success boton-sombra" href="http://localhost:8080/index.php?r=site%2Fregister">Registrate</a></p>
+                    <p class="col-xs-12 col-sm-2">O</p>
+                    <a class="col-xs-12 col-sm-3 btn btn-lg btn-success boton-sombra" href="http://localhost:8080/index.php?r=site%2Flogin">Inicia Sesión</a></p>
+                    <p class="clearfix"></p>
+                <?php }
+            ?>
     </div>
 
     <div class="body-content">
@@ -47,6 +55,7 @@ $this->title = 'My Yii Application';
 
                 <p><a class="btn btn-default" href="http://www.yiiframework.com/extensions/">Yii Extensions &raquo;</a></p>
             </div>
+            <?php echo $idiomas ?>
         </div>
 
     </div>
