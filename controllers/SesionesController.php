@@ -53,6 +53,8 @@ class SesionesController extends Controller
 
         $idUser = Yii::$app->user->getId();
         $sesiones = Sesiones::findAll(['id_usuario'=>$idUser]);
+        //var_dump($idUser); die();
+        //
         // $arraySesiones = [];
         // foreach ($sesiones as $sesion) {
         //     $arraySesiones[] = [$sesion->id_sesion,

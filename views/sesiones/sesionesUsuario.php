@@ -13,14 +13,27 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?php
+
     //var_dump($arraySesiones); die();
         foreach ($arraySesiones as $sesion) {
-            ?><div class="col-md-3"><a href="http://localhost:8080/index.php?r=temas">
+            ?><div class="col-md-3"><a href="index.php?TemasSearch%5Bid_tema%5D=&TemasSearch%5Bdescripcion%5D=&TemasSearch%5Bid_idioma%5D=<?php echo $sesion->id_idioma?>&r=temas">
                                         <img <?php if ($sesion->fin) {
-                                                echo 'class="banderasApagadas"';
+                                                echo 'class="banderasApagadasBg"';
                                             } else {
-                                                echo 'class="banderas"'; } ?> src="<?= $sesion->icono ?>" /><p></p></div>
-                                    </a>
+                                                echo 'class="banderasBg"'; } ?> src="<?= $sesion->icono ?>" /></a>
+                                        <div>
+                                            <br>
+                                            <p <?php if ($sesion->fin) {?> >
+                                                    Del idioma:  <?php echo $sesion->descripcionIdioma ?><br>
+                                                    ¡¡FINALIZADO!!
+                                                <?php } else { ?> >
+                                                Del idioma:  <?php echo $sesion->descripcionIdioma ?><br>
+                                                Faltan: x temas por terminar
+                                            <?php } ?>
+                                            </p>
+                                        </div>
+                </div>
+
     <?php }
     ?>
 </div>

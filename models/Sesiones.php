@@ -80,7 +80,7 @@ class Sesiones extends \yii\db\ActiveRecord
     public function getIcono()
     {
         return $this->idioma->icono;
-        }
+    }
 
     /**
      * @return \yii\db\ActiveQuery

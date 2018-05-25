@@ -17,6 +17,8 @@ use app\models\FormRegister;
 use app\models\Users;
 use app\models\Usuarios;
 use app\models\Idiomas;
+use app\models\User;
+use app\models\Sesiones;
 
 class SiteController extends Controller
 {
@@ -211,13 +213,15 @@ class SiteController extends Controller
     {
         $idiomas= Idiomas::find()->all();
         $logueado= Yii::$app->user->isGuest;
+        $haySesiones = Sesiones::findAll(['id_usuario' => Yii::$app->user->getId()]);
 
         foreach ($idiomas as $key) {
-            $htmlStr[] = '<div class="col-xs-6 col-md-2 col-bg-2">
+            $htmlStr[] = '<div class="col-xs-6 col-md-2 col-bg-2 descIdioma">
+                <a href="chipiona.city">
                 <div class="col-xs-12">
                     <img class="banderas" src="' . $key->icono . '" title="' . $key->descripcion . '" />
                 </div>
-                <div class="col-xs-12">
+                <div class="col-xs-12 descIdioma">
                     <p>' . $key->descripcion . '</p>
                 </div>
             </div>';
@@ -225,7 +229,8 @@ class SiteController extends Controller
         $htmlResult = implode($htmlStr);
         return $this->render('index', [
             'idiomas' => $htmlResult,
-            'logueado' => $logueado
+            'logueado' => $logueado,
+            'haySesiones' => $haySesiones
         ]);
     }
 
@@ -242,7 +247,17 @@ class SiteController extends Controller
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            $this->redirect(['/sesiones/indsesionesusuario']);
+            $idUser = Yii::$app->user->getId();
+            $user = User::isUser($idUser);
+
+            $sesionesUsuario= Sesiones::findOne(['id_usuario' => $idUser]);
+            //var_dump($sesionesUsuario); die();
+            if ($user && $sesionesUsuario != null) {
+                $this->redirect(['/sesiones/indsesionesusuario']);
+            } else {
+                return $this->goHome();
+            }
+
         }
 
         $model->password = '';

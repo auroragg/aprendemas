@@ -70,6 +70,12 @@ class IdiomasController extends Controller
     }
 
     /**
+     * Todos los temas del idioma elegido.
+     * @return mixed
+     */
+    
+
+    /**
      * Displays a single Idiomas model.
      * @param integer $id
      * @return mixed

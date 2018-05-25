@@ -1,10 +1,19 @@
-En sesiones controller cuando creo el array con las sesiones de un usuario para mostrarle
-los idomas que ya ha comenzado, como mando un array asociativo.
+poner debajo de cada icono los temas que le quedan y el finalizado la nota
 
-¿Tengo que mandar un modelo o solo con el array?
+porque los usuarios creados desde la bd no me  loguean??
+
+USUARIOS Y ADMINISTRADORES--user.php he añadido funciones y en SiteController en actionLogin
+he comprobado que sea un usuario para que me lleve a las sesiones iniciadas.
 
 
-//requisitos
+
+
+
+
+
+
+
+//requisitos ¿Cómo añadir css, js, jQuery, plugin, almacenamiento en cliente?
 -validacion formulario
 -ventanas
 -eventos

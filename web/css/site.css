@@ -119,15 +119,28 @@ a.desc:after {
 /* IMAGENES */
 
     .banderas {
-        width: 150px;
+        width: 64px;
         border-radius: 10%;
     }
 
     .banderasApagadas {
         opacity: 0.4;
-        width: 150px;
+        width: 64px;
         border-radius: 10%;
     }
+
+    .banderasBg {
+        width: 128px;
+        border-radius: 10%;
+    }
+
+    .banderasApagadasBg {
+        opacity: 0.4;
+        width: 128px;
+        border-radius: 10%;
+    }
+
+
 
     .jumbotron {
         margin-bottom: 0px;
@@ -147,3 +160,6 @@ a.desc:after {
 }
 
 /* TEXTOS */
+.descIdioma {
+    text-align: center;
+}

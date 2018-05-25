@@ -18,7 +18,7 @@ class TemasSearch extends Temas
     public function rules()
     {
         return [
-            [['id_tema', 'id_nivel'], 'integer'],
+            [['id_tema', 'id_idioma'], 'integer'],
             [['descripcion'], 'safe'],
         ];
     }
@@ -60,7 +60,7 @@ class TemasSearch extends Temas
         // grid filtering conditions
         $query->andFilterWhere([
             'id_tema' => $this->id_tema,
-            'id_nivel' => $this->id_nivel,
+            'id_idioma' => $this->id_idioma,
         ]);
 
         $query->andFilterWhere(['ilike', 'descripcion', $this->descripcion]);

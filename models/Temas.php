@@ -9,10 +9,10 @@ use Yii;
  *
  * @property int $id_tema
  * @property string $descripcion
- * @property int $id_nivel
+ * @property int $id_idioma
  *
  * @property Apartados[] $apartados
- * @property Niveles $nivel
+ * @property Idiomas $idioma
  */
 class Temas extends \yii\db\ActiveRecord
 {
@@ -31,10 +31,10 @@ class Temas extends \yii\db\ActiveRecord
     {
         return [
             [['descripcion'], 'required'],
-            [['id_nivel'], 'default', 'value' => null],
-            [['id_nivel'], 'integer'],
+            [['id_idioma'], 'default', 'value' => null],
+            [['id_idioma'], 'integer'],
             [['descripcion'], 'string', 'max' => 150],
-            [['id_nivel'], 'exist', 'skipOnError' => true, 'targetClass' => Niveles::className(), 'targetAttribute' => ['id_nivel' => 'id_nivel']],
+            [['id_idioma'], 'exist', 'skipOnError' => true, 'targetClass' => Idiomas::className(), 'targetAttribute' => ['id_idioma' => 'id_idioma']],
         ];
     }
 
@@ -46,7 +46,7 @@ class Temas extends \yii\db\ActiveRecord
         return [
             'id_tema' => 'Id Tema',
             'descripcion' => 'Descripcion',
-            'id_nivel' => 'Id Nivel',
+            'id_idioma' => 'Id Idioma',
         ];
     }
 

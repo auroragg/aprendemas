@@ -27,7 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id_tema',
             'descripcion',
-            'id_nivel',
+            'id_idioma',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

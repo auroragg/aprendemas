@@ -17,7 +17,6 @@ create table roles (
 );
 
 insert into roles (descripcion) values ('Administrador');
-insert into roles (descripcion) values ('Invitado');
 insert into roles (descripcion) values ('Usuario');
 
 create table usuarios (
@@ -28,11 +27,11 @@ create table usuarios (
   authkey varchar(250) not null,
   accesstoken varchar(250) not null,
   activate boolean not null default false,
-  rol_id bigint references roles (id_rol) on delete no action on update cascade
+  rol_id bigint default 2 references roles (id_rol) on delete no action on update cascade
 );
 
-insert into usuarios (username, email, password, authkey, accesstoken, activate, rol_id) values('aurora','aurora@gmail.com','auroragonzalez','aurora','aurora', true, 1);
-insert into usuarios (username, email, password, authkey, accesstoken, activate, rol_id) values('lolo','lolo@gmail.com','lologonzalez','lolo','lolo', true, 1);
+insert into usuarios (username, email, password, authkey, accesstoken, activate, rol_id) values('aurora','aurora@gmail.com','fsJl5YYV2GU46','aurora','aurora', true, 1);
+insert into usuarios (username, email, password, authkey, accesstoken, activate) values('lolo','lolo@gmail.com','lologonzalez','lolo','lolo', true);
 
 
 create table idiomas (
@@ -61,14 +60,15 @@ insert into niveles (descripcion, id_idioma) values ('Avanzado', 3);
 create table temas (
   id_tema bigserial constraint pk_temas primary key,
   descripcion varchar(150) not null,
-  id_nivel bigint  references niveles (id_nivel) on delete no action on update cascade
+  id_idioma bigint  references idiomas (id_idioma) on delete no action on update cascade
 
 );
 
-insert into temas (descripcion, id_nivel) values ('This is the description of Theme 1', 1);
-insert into temas (descripcion, id_nivel) values ('This is the description of Theme 2', 1);
-insert into temas (descripcion, id_nivel) values ('This is the description of Theme 3', 1);
-insert into temas (descripcion, id_nivel) values ('This is the description of Theme 4', 1);
+insert into temas (descripcion, id_idioma) values ('This is the description of Theme 1', 1);
+insert into temas (descripcion, id_idioma) values ('This is the description of Theme 2', 1);
+insert into temas (descripcion, id_idioma) values ('This is the description of Theme 3', 1);
+insert into temas (descripcion, id_idioma) values ('This is the description of Theme 4', 1);
+insert into temas (descripcion, id_idioma) values ('This is the description of Theme 1', 2);
 
 create table apartados (
   id_apartado bigserial     constraint pk_apartados primary key,
@@ -140,4 +140,4 @@ create table resultados (
   correcto boolean not null,
   puntuacion_minima integer not null
 );
-insert into resultados (id_sesion_apartado, id_pregunta, id_respuesta, correcto, puntuacion_minima) values (1, 1, 1, true, 8);
+insert into resultados (id_sesion_apartado, id_pregunta, id_respuesta, correcto, puntuacion_minima) values (1, 1, 1, true, 80);
