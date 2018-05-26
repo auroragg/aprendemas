@@ -64,6 +64,7 @@ class TemasSearch extends Temas
         ]);
 
         $query->andFilterWhere(['ilike', 'descripcion', $this->descripcion]);
+        $query->andFilterWhere(['ilike', 'titulo', $this->titulo]);
 
         return $dataProvider;
     }

@@ -10,7 +10,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * SesionesApartadosController implements the CRUD actions for SesionesApartados model.
+ * SesionesapartadosController implements the CRUD actions for SesionesApartados model.
  */
 class SesionesapartadosController extends Controller
 {

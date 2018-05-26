@@ -4,22 +4,22 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\SesionesApartadosSearch */
+/* @var $model app\models\SesionesTemasSearch */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="sesiones-apartados-search">
+<div class="sesiones-temas-search">
 
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
         'method' => 'get',
     ]); ?>
 
-    <?= $form->field($model, 'id_sesion_apartado') ?>
-
     <?= $form->field($model, 'id_sesion_tema') ?>
 
-    <?= $form->field($model, 'id_apartado') ?>
+    <?= $form->field($model, 'id_sesion') ?>
+
+    <?= $form->field($model, 'id_tema') ?>
 
     <?= $form->field($model, 'fecha') ?>
 

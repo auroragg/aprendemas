@@ -5,12 +5,12 @@ namespace app\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\SesionesApartados;
+use app\models\SesionesTemas;
 
 /**
- * SesionesApartadosSearch represents the model behind the search form of `app\models\SesionesApartados`.
+ * SesionesTemasSearch represents the model behind the search form of `app\models\SesionesTemas`.
  */
-class SesionesApartadosSearch extends SesionesApartados
+class SesionesTemasSearch extends SesionesTemas
 {
     /**
      * {@inheritdoc}
@@ -18,7 +18,7 @@ class SesionesApartadosSearch extends SesionesApartados
     public function rules()
     {
         return [
-            [['id_sesion_apartado', 'id_sesion_tema', 'id_apartado'], 'integer'],
+            [['id_sesion_tema', 'id_sesion', 'id_tema'], 'integer'],
             [['fecha'], 'safe'],
             [['finalizado'], 'boolean'],
         ];
@@ -42,7 +42,7 @@ class SesionesApartadosSearch extends SesionesApartados
      */
     public function search($params)
     {
-        $query = SesionesApartados::find();
+        $query = SesionesTemas::find();
 
         // add conditions that should always apply here
 
@@ -60,9 +60,9 @@ class SesionesApartadosSearch extends SesionesApartados
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'id_sesion_apartado' => $this->id_sesion_apartado,
             'id_sesion_tema' => $this->id_sesion_tema,
-            'id_apartado' => $this->id_apartado,
+            'id_sesion' => $this->id_sesion,
+            'id_tema' => $this->id_tema,
             'fecha' => $this->fecha,
             'finalizado' => $this->finalizado,
         ]);

@@ -2,12 +2,12 @@
 
 namespace app\controllers;
 
-use Yii;
 use app\models\Sesiones;
 use app\models\SesionesSearch;
+use Yii;
+use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * SesionesController implements the CRUD actions for Sesiones model.
@@ -50,30 +50,19 @@ class SesionesController extends Controller
      */
     public function actionIndsesionesusuario()
     {
-
         $idUser = Yii::$app->user->getId();
-        $sesiones = Sesiones::findAll(['id_usuario'=>$idUser]);
+        $sesiones = Sesiones::findAll(['id_usuario' => $idUser]);
         //var_dump($idUser); die();
-        //
-        // $arraySesiones = [];
-        // foreach ($sesiones as $sesion) {
-        //     $arraySesiones[] = [$sesion->id_sesion,
-        //                         $sesion->username,
-        //                         $sesion->id_idioma,
-        //                         $sesion->descripcionIdioma,
-        //                         $sesion->icono,
-        //                         $sesion->fin];
-        // }
 
 
         return $this->render('sesionesUsuario', [
-            'arraySesiones' => $sesiones
+            'arraySesiones' => $sesiones,
         ]);
     }
 
     /**
      * Displays a single Sesiones model.
-     * @param integer $id
+     * @param int $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
@@ -105,7 +94,7 @@ class SesionesController extends Controller
     /**
      * Updates an existing Sesiones model.
      * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
+     * @param int $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
@@ -125,7 +114,7 @@ class SesionesController extends Controller
     /**
      * Deletes an existing Sesiones model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
+     * @param int $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
@@ -139,7 +128,7 @@ class SesionesController extends Controller
     /**
      * Finds the Sesiones model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
+     * @param int $id
      * @return Sesiones the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */

@@ -163,3 +163,7 @@ a.desc:after {
 .descIdioma {
     text-align: center;
 }
+
+.tema{
+    border: 4px groove black;
+}

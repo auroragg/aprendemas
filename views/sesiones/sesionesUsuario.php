@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     //var_dump($arraySesiones); die();
         foreach ($arraySesiones as $sesion) {
-            ?><div class="col-md-3"><a href="index.php?TemasSearch%5Bid_tema%5D=&TemasSearch%5Bdescripcion%5D=&TemasSearch%5Bid_idioma%5D=<?php echo $sesion->id_idioma?>&r=temas">
+            ?><div class="col-md-3"><a href="/index.php?r=sesionestemas/muestratemas&id_sesion=<?php echo $sesion->id_sesion?>">
                                         <img <?php if ($sesion->fin) {
                                                 echo 'class="banderasApagadasBg"';
                                             } else {

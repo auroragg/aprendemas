@@ -11,7 +11,7 @@ use yii\widgets\ActiveForm;
 <div class="temas-form">
 
     <?php $form = ActiveForm::begin(); ?>
-
+    <?= $form->field($model, 'titulo')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'descripcion')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'id_idioma')->textInput() ?>

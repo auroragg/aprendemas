@@ -44,6 +44,7 @@ class TemasController extends Controller
         ]);
     }
 
+
     /**
      * Displays a single Temas model.
      * @param integer $id

@@ -16,7 +16,7 @@ use yii\widgets\ActiveForm;
     ]); ?>
 
     <?= $form->field($model, 'id_tema') ?>
-
+    <?= $form->field($model, 'titulo') ?>
     <?= $form->field($model, 'descripcion') ?>
 
     <?= $form->field($model, 'id_idioma') ?>

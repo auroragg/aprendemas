@@ -4,17 +4,17 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\SesionesApartados */
+/* @var $model app\models\SesionesTemas */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="sesiones-apartados-form">
+<div class="sesiones-temas-form">
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'id_sesion_tema')->textInput() ?>
+    <?= $form->field($model, 'id_sesion')->textInput() ?>
 
-    <?= $form->field($model, 'id_apartado')->textInput() ?>
+    <?= $form->field($model, 'id_tema')->textInput() ?>
 
     <?= $form->field($model, 'fecha')->textInput() ?>
 

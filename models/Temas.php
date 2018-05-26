@@ -8,6 +8,7 @@ use Yii;
  * This is the model class for table "temas".
  *
  * @property int $id_tema
+ * @property int $titulo
  * @property string $descripcion
  * @property int $id_idioma
  *
@@ -30,7 +31,7 @@ class Temas extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['descripcion'], 'required'],
+            [['descripcion', 'titulo'], 'required'],
             [['id_idioma'], 'default', 'value' => null],
             [['id_idioma'], 'integer'],
             [['descripcion'], 'string', 'max' => 150],
@@ -45,8 +46,10 @@ class Temas extends \yii\db\ActiveRecord
     {
         return [
             'id_tema' => 'Id Tema',
+            'titulo' => 'Titulo',
             'descripcion' => 'Descripcion',
             'id_idioma' => 'Id Idioma',
+
         ];
     }
 

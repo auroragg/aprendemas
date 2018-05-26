@@ -2,37 +2,25 @@
 
 namespace app\controllers;
 
-use app\models\Idiomas;
-use app\models\IdiomasSearch;
-use app\models\Sesiones;
+use app\models\SesionesTemas;
+use app\models\SesionesTemasSearch;
+use app\models\Temas;
 use Yii;
-use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 
 /**
- * IdiomasController implements the CRUD actions for Idiomas model.
+ * SesionestemasController implements the CRUD actions for SesionesTemas model.
  */
-class IdiomasController extends Controller
+class SesionestemasController extends Controller
 {
     /**
      * {@inheritdoc}
      */
     public function behaviors()
     {
-        return[
-            'access' => [
-                'class' => AccessControl::classname(),
-                'only' => ['create', 'update', 'delete'],
-                'rules' => [
-                    [
-                        'allow' => true,
-                        'roles' => ['@'],  //no deja crear, actualizar o borrar un idioma a usuarios no logueados
-                    ],
-                ],
-            ],
-
+        return [
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -43,36 +31,41 @@ class IdiomasController extends Controller
     }
 
     /**
-     * Lists all Idiomas models.
+     * Lists all SesionesTemas models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new IdiomasSearch();
+        $searchModel = new SesionesTemasSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-        //$idUser = Yii::$app->user->getId();
-        //var_dump($idUser); die();
-        // $idiomas = Sesiones::findAll(['id_usuario'=>$idUser, 'fin'=>false]);
-        // $arraySesiones = [];
-        // foreach ($idiomas as $idioma) {
-        //     $arraySesiones[] = [$idioma->username, $idioma->descripcionIdioma, $idioma->icono];
-        //}
-        //var_dump($idiomas); die();
-
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-            //'array' => $arraySesiones
         ]);
     }
 
+    /**
+     * Todos los temas del idioma elegido.
+     * @return mixed
+     * @param mixed $id_idioma
+     * @param mixed $id_sesion
+     */
+    public function actionMuestratemas($id_sesion)
+    {
+        $model = new SesionesTemas();
+        $temas = SesionesTemas::findAll(['id_sesion' => $id_sesion]);
+        //var_dump($id_idioma); die();
 
 
+        return $this->render('muestraTemas', [
+            'temas' => $temas,
+            'model' => $model,
+        ]);
+    }
 
     /**
-     * Displays a single Idiomas model.
+     * Displays a single SesionesTemas model.
      * @param int $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -85,16 +78,16 @@ class IdiomasController extends Controller
     }
 
     /**
-     * Creates a new Idiomas model.
+     * Creates a new SesionesTemas model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Idiomas();
+        $model = new SesionesTemas();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id_idioma]);
+            return $this->redirect(['view', 'id' => $model->id_sesion_tema]);
         }
 
         return $this->render('create', [
@@ -103,7 +96,7 @@ class IdiomasController extends Controller
     }
 
     /**
-     * Updates an existing Idiomas model.
+     * Updates an existing SesionesTemas model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param int $id
      * @return mixed
@@ -114,7 +107,7 @@ class IdiomasController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id_idioma]);
+            return $this->redirect(['view', 'id' => $model->id_sesion_tema]);
         }
 
         return $this->render('update', [
@@ -123,7 +116,7 @@ class IdiomasController extends Controller
     }
 
     /**
-     * Deletes an existing Idiomas model.
+     * Deletes an existing SesionesTemas model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param int $id
      * @return mixed
@@ -137,15 +130,15 @@ class IdiomasController extends Controller
     }
 
     /**
-     * Finds the Idiomas model based on its primary key value.
+     * Finds the SesionesTemas model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param int $id
-     * @return Idiomas the loaded model
+     * @return SesionesTemas the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Idiomas::findOne($id)) !== null) {
+        if (($model = SesionesTemas::findOne($id)) !== null) {
             return $model;
         }
 
