@@ -69,7 +69,10 @@ insert into temas (titulo, descripcion, id_idioma) values ('Tema 1 -Verbo To Be-
 insert into temas (titulo, descripcion, id_idioma) values ('Tema 2','This is the description of Theme 2', 1);
 insert into temas (titulo, descripcion, id_idioma) values ('Tema 3','This is the description of Theme 3', 1);
 insert into temas (titulo, descripcion, id_idioma) values ('Tema 4','This is the description of Theme 4', 1);
-insert into temas (titulo, descripcion, id_idioma) values ('Tema 1','This is the description of Theme 1', 2);
+insert into temas (titulo, descripcion, id_idioma) values ('Tema 1','Descripción del tema 1', 2);
+insert into temas (titulo, descripcion, id_idioma) values ('Tema 2','Descripción del tema 2', 2);
+insert into temas (titulo, descripcion, id_idioma) values ('Tema 3','Descripción del tema 3', 2);
+insert into temas (titulo, descripcion, id_idioma) values ('Tema 4','Descripción del tema 4', 2);
 
 create table apartados (
   id_apartado bigserial     constraint pk_apartados primary key,
@@ -111,8 +114,7 @@ create table sesiones (
 );
 
 insert into sesiones (id_usuario, id_idioma, fin) values (1, 1, false);
-insert into sesiones (id_usuario, id_idioma, fin) values (1, 2, true);
-insert into sesiones (id_usuario, id_idioma, fin) values (1, 3, false);
+insert into sesiones (id_usuario, id_idioma, fin) values (1, 2, false);
 
 create table sesiones_temas (
   id_sesion_tema bigserial constraint pk_sesiones_temas primary key,
@@ -122,9 +124,11 @@ create table sesiones_temas (
   finalizado boolean not null default false
 );
 
-insert into sesiones_temas (id_sesion, id_tema, finalizado) values (1, 1, false);
-insert into sesiones_temas (id_sesion, id_tema, finalizado) values (2, 1, true);
-insert into sesiones_temas (id_sesion, id_tema, finalizado) values (2, 2, false);
+insert into sesiones_temas (id_sesion, id_tema, finalizado) values (1, 1, true);
+insert into sesiones_temas (id_sesion, id_tema, finalizado) values (1, 2, true);
+insert into sesiones_temas (id_sesion, id_tema, finalizado) values (1, 3, false);
+insert into sesiones_temas (id_sesion, id_tema, finalizado) values (2, 5, true);
+insert into sesiones_temas (id_sesion, id_tema, finalizado) values (2, 6, false);
 
 create table sesiones_apartados (
   id_sesion_apartado bigserial constraint pk_sesiones_apartados primary key,

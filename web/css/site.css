@@ -164,6 +164,18 @@ a.desc:after {
     text-align: center;
 }
 
-.tema{
+.temaBox{
     border: 4px groove black;
+}
+
+.temaBoxInactivo{
+    border: 4px groove black;
+    opacity: 0.4;
+}
+
+.finalizado{
+    border: 4px groove green;
+}
+.noFinalizado{
+    border: 4px groove red;
 }

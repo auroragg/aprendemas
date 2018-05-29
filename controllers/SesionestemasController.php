@@ -5,6 +5,7 @@ namespace app\controllers;
 use app\models\SesionesTemas;
 use app\models\SesionesTemasSearch;
 use app\models\Temas;
+use app\models\Sesiones;
 use Yii;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
@@ -54,13 +55,15 @@ class SesionestemasController extends Controller
     public function actionMuestratemas($id_sesion)
     {
         $model = new SesionesTemas();
-        $temas = SesionesTemas::findAll(['id_sesion' => $id_sesion]);
-        //var_dump($id_idioma); die();
-
+        $idioma = Sesiones::findOne(['id_sesion' => $id_sesion])->id_idioma;
+        $temas = Temas::findAll(['id_idioma' => $idioma]);
+        $sesionesTemas = SesionesTemas::findAll(['id_sesion' => $id_sesion]);
+        //var_dump($temasPendientes); die();
 
         return $this->render('muestraTemas', [
             'temas' => $temas,
             'model' => $model,
+            'sesionesTemas' => $sesionesTemas,
         ]);
     }
 

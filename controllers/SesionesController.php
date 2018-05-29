@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\models\Sesiones;
 use app\models\SesionesSearch;
+use app\models\SesionesTemas;
 use Yii;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
@@ -52,11 +53,13 @@ class SesionesController extends Controller
     {
         $idUser = Yii::$app->user->getId();
         $sesiones = Sesiones::findAll(['id_usuario' => $idUser]);
+        //$sesionesTemas = SesionesTemas::findAll(['id_sesion' => $id_sesion]);
         //var_dump($idUser); die();
 
 
         return $this->render('sesionesUsuario', [
             'arraySesiones' => $sesiones,
+            //'sesionesTemas' => $sesionesTemas,
         ]);
     }
 

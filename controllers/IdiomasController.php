@@ -5,6 +5,7 @@ namespace app\controllers;
 use app\models\Idiomas;
 use app\models\IdiomasSearch;
 use app\models\Sesiones;
+use app\models\Temas;
 use Yii;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
@@ -68,7 +69,7 @@ class IdiomasController extends Controller
         ]);
     }
 
-
+    
 
 
     /**
