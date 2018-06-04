@@ -4,6 +4,10 @@
 
 $this->title = 'AprendeMas';
 ?>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+</head>
 <div class="site-index">
 
     <div class="jumbotron">
@@ -14,7 +18,7 @@ $this->title = 'AprendeMas';
         <?php if(!$logueado) {
                     if ($haySesiones != null) {?>
                         <p>
-                            <a class="btn btn-lg btn-success boton-sombra" href="index.php?r=sesiones%2Findsesionesusuario">Empezar</a>
+                            <a class="btn btn-lg btn-success boton-sombra" href="index.php?r=sesiones/indsesionesusuario">Empezar</a>
                         </p>
                         <p class="btn btn-lg btn-success boton-sombra">Escoge uno de los idiomas de abajo para comenzar un curso.</p>
                     <?php } else {?>
@@ -29,5 +33,6 @@ $this->title = 'AprendeMas';
                 <?php }
             ?>
     </div>
-            <?php echo $idiomas ?>
+
+        <?php echo $banderas ?>
 </div>

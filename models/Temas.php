@@ -68,4 +68,17 @@ class Temas extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Niveles::className(), ['id_nivel' => 'id_nivel']);
     }
+
+    public function getSesionesTemas()
+    {
+        return $this->hasMany(SesionesTemas::className(), ['id_tema' => 'id_tema']);
+    }
+
+	   /**
+	    * @return \yii\db\ActiveQuery
+	    */
+	   public function getIdioma()
+	   {
+	       return $this->hasOne(Idiomas::className(), ['id_idioma' => 'id_idioma']);
+	   }
 }

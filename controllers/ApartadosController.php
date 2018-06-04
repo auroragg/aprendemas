@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use Yii;
 use app\models\Apartados;
+use app\models\Temas;
 use app\models\ApartadosSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -54,6 +55,20 @@ class ApartadosController extends Controller
     {
         return $this->render('view', [
             'model' => $this->findModel($id),
+        ]);
+    }
+
+    public function actionApartado($id)
+    {
+        $id_tema = Apartados::findOne(['id_apartado' => $id])->id_tema;
+        $id_idioma = Temas::findOne(['id_tema'=>$id_tema])->id_idioma;
+        $temas = Temas::findAll(['id_idioma' => $id_idioma]);
+        $apartado = Apartados::findOne(['id_apartado' => $id]);
+
+
+        return $this->render('muestraApartado', [
+            'apartado' => $apartado,
+
         ]);
     }
 

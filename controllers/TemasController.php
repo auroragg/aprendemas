@@ -4,6 +4,8 @@ namespace app\controllers;
 
 use Yii;
 use app\models\Temas;
+use app\models\Sesiones;
+use app\models\SesionesApartados;
 use app\models\TemasSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -27,6 +29,55 @@ class TemasController extends Controller
                 ],
             ],
         ];
+    }
+
+    /**
+     * Todos los temas del idioma elegido.
+     * @return mixed
+     * @param mixed $id_idioma
+     * @param mixed $id_sesion
+     */
+    public function actionMuestratemas($id_sesion)
+    {
+        $model = new Temas();
+        $idioma = Sesiones::findOne(['id_sesion' => $id_sesion])->id_idioma;
+        $temas = Temas::findAll(['id_idioma' => $idioma]);
+
+        foreach ($temas as $tema) {
+            $apartados = $tema->apartados;
+            $clase ="temaBoxInactivo";
+            foreach ($apartados as $key) {
+                /*$sesApart = $key->sesionesApartados;*/
+                $sesApart = SesionesApartados::findOne(['id_apartado' => $key->id_apartado, 'id_sesion' => $id_sesion]);
+                if ($sesApart != null ) {
+                    $clase = "temaBox";
+                    break;
+                }
+            }
+
+
+            $htmlStr[] = '<div class="col-sm-3 ' . $clase . '">' .
+                '<p>' .  $tema->titulo . '<span class="glyphicon glyphicon-ok"></span></p>' .
+                '<p>' .  $tema->descripcion . '</p>' .
+                '<button type="button" class="btn btn-info col-xs-12" data-toggle="collapse"' .
+                        'data-target=".demo' .  $tema->id_tema . '">Ver Apartados    <span class="glyphicon glyphicon-collapse-down"></button>' .
+                        '<div class="col-xs-12 collapse demo' .  $tema->id_tema . '">';
+                foreach ($apartados as $apartado) {
+                         $htmlInterm[] = '<p><a href="/index.php?r=apartados/apartado&id=' .  $apartado->id_apartado . '">'
+                          . $apartado->titulo . '</a></p>';
+                }
+            $htmlStr[] =implode($htmlInterm) . '</div></div>';
+            $htmlInterm = [];
+        };
+
+        //var_dump($temasPendientes); die();
+        $htmlStr = implode($htmlStr);
+        return $this->render('muestraTemas', [
+            'temas' => $temas,
+            'model' => $model,
+            'htmlStr' => $htmlStr,
+            //'sesionesTemas' => $sesionesTemas,
+        ]);
     }
 
     /**

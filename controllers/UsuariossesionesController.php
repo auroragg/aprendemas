@@ -2,19 +2,17 @@
 
 namespace app\controllers;
 
-use app\models\SesionesTemas;
-use app\models\SesionesTemasSearch;
-use app\models\Temas;
-use app\models\Sesiones;
 use Yii;
-use yii\filters\VerbFilter;
+use app\models\UsuariosSesiones;
+use app\models\UsuariosSesionesSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use yii\filters\VerbFilter;
 
 /**
- * SesionestemasController implements the CRUD actions for SesionesTemas model.
+ * UsuariossesionesController implements the CRUD actions for UsuariosSesiones model.
  */
-class SesionestemasController extends Controller
+class UsuariossesionesController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -32,12 +30,12 @@ class SesionestemasController extends Controller
     }
 
     /**
-     * Lists all SesionesTemas models.
+     * Lists all UsuariosSesiones models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new SesionesTemasSearch();
+        $searchModel = new UsuariosSesionesSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -46,11 +44,9 @@ class SesionestemasController extends Controller
         ]);
     }
 
-    
-
     /**
-     * Displays a single SesionesTemas model.
-     * @param int $id
+     * Displays a single UsuariosSesiones model.
+     * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
@@ -62,16 +58,16 @@ class SesionestemasController extends Controller
     }
 
     /**
-     * Creates a new SesionesTemas model.
+     * Creates a new UsuariosSesiones model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new SesionesTemas();
+        $model = new UsuariosSesiones();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id_sesion_tema]);
+            return $this->redirect(['view', 'id' => $model->id_usuario_sesion]);
         }
 
         return $this->render('create', [
@@ -80,9 +76,9 @@ class SesionestemasController extends Controller
     }
 
     /**
-     * Updates an existing SesionesTemas model.
+     * Updates an existing UsuariosSesiones model.
      * If update is successful, the browser will be redirected to the 'view' page.
-     * @param int $id
+     * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
@@ -91,7 +87,7 @@ class SesionestemasController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id_sesion_tema]);
+            return $this->redirect(['view', 'id' => $model->id_usuario_sesion]);
         }
 
         return $this->render('update', [
@@ -100,9 +96,9 @@ class SesionestemasController extends Controller
     }
 
     /**
-     * Deletes an existing SesionesTemas model.
+     * Deletes an existing UsuariosSesiones model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param int $id
+     * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
@@ -114,15 +110,32 @@ class SesionestemasController extends Controller
     }
 
     /**
-     * Finds the SesionesTemas model based on its primary key value.
+     * Todas las sesiones del usuario logueado.
+     * @return mixed
+     */
+    public function actionIndsesionesusuario()
+    {
+        $idUser = Yii::$app->user->getId();
+        $sesiones = Usuariossesiones::findAll(['id_usuario' => $idUser]);
+        //var_dump($sesiones); die();
+
+
+        return $this->render('sesionesUsuario', [
+            'arraySesiones' => $sesiones,
+            //'sesionesTemas' => $sesionesTemas,
+        ]);
+    }
+
+    /**
+     * Finds the UsuariosSesiones model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param int $id
-     * @return SesionesTemas the loaded model
+     * @param integer $id
+     * @return UsuariosSesiones the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = SesionesTemas::findOne($id)) !== null) {
+        if (($model = UsuariosSesiones::findOne($id)) !== null) {
             return $model;
         }
 

@@ -8,6 +8,7 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\filters\AccessControl;
 use yii\web\Controller;
+use yii\web\JsExpression;
 use yii\widgets\ActiveForm;
 use yii\web\Response;
 use yii\filters\VerbFilter;
@@ -18,8 +19,11 @@ use app\models\Users;
 use app\models\Usuarios;
 use app\models\Idiomas;
 use app\models\User;
+use app\models\UsuariosSesiones;
 use app\models\Sesiones;
+?>
 
+<?php
 class SiteController extends Controller
 {
 
@@ -216,9 +220,11 @@ class SiteController extends Controller
         $haySesiones = Sesiones::findAll(['id_usuario' => Yii::$app->user->getId()]);
 
         foreach ($idiomas as $key) {
-            $htmlStr[] = '<div class="col-xs-6 col-md-2 col-bg-2 descIdioma">
-                <a href="chipiona.city">
+            $htmlStr[] = '<div class="col-xs-6 col-md-2 col-bg-2 descIdioma" id=idioma' . $key->id_idioma . '>
                 <div class="col-xs-12">
+                <script type="text/javascript" >
+                document.getElementById("idioma' . $key->id_idioma . '").onclick = function(){location.assign("/index.php?r=sesiones/existesesion&id_idioma=' . $key->id_idioma . '");};
+                </script>
                     <img class="banderas" src="' . $key->icono . '" title="' . $key->descripcion . '" />
                 </div>
                 <div class="col-xs-12 descIdioma">
@@ -226,11 +232,14 @@ class SiteController extends Controller
                 </div>
             </div>';
         }
+
         $htmlResult = implode($htmlStr);
+
         return $this->render('index', [
-            'idiomas' => $htmlResult,
+            'banderas' => $htmlResult,
             'logueado' => $logueado,
-            'haySesiones' => $haySesiones
+            'haySesiones' => $haySesiones,
+            'idiomas'=> $idiomas,
         ]);
     }
 

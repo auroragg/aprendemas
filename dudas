@@ -1,6 +1,4 @@
-poner debajo de cada icono los temas que le quedan y el finalizado la nota
 
-porque los usuarios creados desde la bd no me  loguean??
 
 USUARIOS Y ADMINISTRADORES--user.php he añadido funciones y en SiteController en actionLogin
 he comprobado que sea un usuario para que me lleve a las sesiones iniciadas.
@@ -10,6 +8,7 @@ temas colores con clases de bootstrap
 http://glyphicons.com/ o mirar kartik-yii2-icons
 
 muestraTemas.php como hago para poner los glyphicons con un foreach
+falta mostrar test y del idioma finalizado la nota
 
 
 

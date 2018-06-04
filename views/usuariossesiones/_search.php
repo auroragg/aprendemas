@@ -4,24 +4,22 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\SesionesApartadosSearch */
+/* @var $model app\models\UsuariosSesionesSearch */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="sesiones-apartados-search">
+<div class="usuarios-sesiones-search">
 
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
         'method' => 'get',
     ]); ?>
 
-    <?= $form->field($model, 'id_sesion_apartado') ?>
+    <?= $form->field($model, 'id_usuario_sesion') ?>
+
+    <?= $form->field($model, 'id_usuario') ?>
 
     <?= $form->field($model, 'id_sesion') ?>
-
-    <?= $form->field($model, 'id_apartado') ?>
-
-    <?= $form->field($model, 'finalizado')->checkbox() ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

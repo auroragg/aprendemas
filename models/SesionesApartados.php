@@ -8,15 +8,14 @@ use Yii;
  * This is the model class for table "sesiones_apartados".
  *
  * @property int $id_sesion_apartado
- * @property int $id_sesion_tema
+ * @property int $id_sesion
  * @property int $id_apartado
- * @property string $fecha
  * @property bool $finalizado
  *
  * @property Examen[] $examens
  * @property Resultados[] $resultados
  * @property Apartados $apartado
- * @property SesionesTemas $sesionTema
+ * @property Sesiones $sesion
  */
 class SesionesApartados extends \yii\db\ActiveRecord
 {
@@ -34,12 +33,11 @@ class SesionesApartados extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_sesion_tema', 'id_apartado'], 'default', 'value' => null],
-            [['id_sesion_tema', 'id_apartado'], 'integer'],
-            [['fecha'], 'safe'],
+            [['id_sesion', 'id_apartado'], 'default', 'value' => null],
+            [['id_sesion', 'id_apartado'], 'integer'],
             [['finalizado'], 'boolean'],
             [['id_apartado'], 'exist', 'skipOnError' => true, 'targetClass' => Apartados::className(), 'targetAttribute' => ['id_apartado' => 'id_apartado']],
-            [['id_sesion_tema'], 'exist', 'skipOnError' => true, 'targetClass' => SesionesTemas::className(), 'targetAttribute' => ['id_sesion_tema' => 'id_sesion_tema']],
+            [['id_sesion'], 'exist', 'skipOnError' => true, 'targetClass' => Sesiones::className(), 'targetAttribute' => ['id_sesion' => 'id_sesion']],
         ];
     }
 
@@ -50,9 +48,8 @@ class SesionesApartados extends \yii\db\ActiveRecord
     {
         return [
             'id_sesion_apartado' => 'Id Sesion Apartado',
-            'id_sesion_tema' => 'Id Sesion Tema',
+            'id_sesion' => 'Id Sesion',
             'id_apartado' => 'Id Apartado',
-            'fecha' => 'Fecha',
             'finalizado' => 'Finalizado',
         ];
     }
@@ -84,8 +81,8 @@ class SesionesApartados extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getSesionTema()
+    public function getSesion()
     {
-        return $this->hasOne(SesionesTemas::className(), ['id_sesion_tema' => 'id_sesion_tema']);
+        return $this->hasOne(Sesiones::className(), ['id_sesion' => 'id_sesion']);
     }
 }

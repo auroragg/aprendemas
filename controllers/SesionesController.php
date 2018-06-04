@@ -45,23 +45,7 @@ class SesionesController extends Controller
         ]);
     }
 
-    /**
-     * Todas las sesiones del usuario logueado.
-     * @return mixed
-     */
-    public function actionIndsesionesusuario()
-    {
-        $idUser = Yii::$app->user->getId();
-        $sesiones = Sesiones::findAll(['id_usuario' => $idUser]);
-        //$sesionesTemas = SesionesTemas::findAll(['id_sesion' => $id_sesion]);
-        //var_dump($idUser); die();
 
-
-        return $this->render('sesionesUsuario', [
-            'arraySesiones' => $sesiones,
-            //'sesionesTemas' => $sesionesTemas,
-        ]);
-    }
 
     /**
      * Displays a single Sesiones model.
@@ -74,6 +58,45 @@ class SesionesController extends Controller
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
+    }
+
+    /**
+     * Todas las sesiones del usuario logueado.
+     * @return mixed
+     */
+    public function actionIndsesionesusuario()
+    {
+        $idUser = Yii::$app->user->getId();
+        $sesiones = Sesiones::findAll(['id_usuario' => $idUser]);
+        //var_dump($sesiones); die();
+
+
+        return $this->render('sesionesUsuario', [
+            'arraySesiones' => $sesiones,
+            //'sesionesTemas' => $sesionesTemas,
+        ]);
+    }
+
+    /**
+     * Comprobar si esa sesión ya existe
+     * @return mixed
+     */
+    public function actionExistesesion($id_idioma)
+    {
+        $sesion = Sesiones::findOne(['id_idioma' => $id_idioma, 'id_usuario'=>Yii::$app->user->id]);
+            if ($sesion != null) {
+                $id_sesion = $sesion->id_sesion;
+                $this->redirect(['temas/muestratemas', 'id_sesion'=>$id_sesion]);
+            }else {
+                //crear una nueva sesion//
+                $nuevaSesion = new Sesiones();
+                $nuevaSesion->id_usuario = Yii::$app->user->id;
+                $nuevaSesion->id_idioma = $id_idioma;
+                $nuevaSesion->fin = false;
+                $nuevaSesion->fecha= date("Y-m-d");
+                $nuevaSesion->save();
+                $this->redirect(['temas/muestratemas', 'id_sesion'=>$nuevaSesion->id_sesion]);
+            }
     }
 
     /**

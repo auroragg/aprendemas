@@ -73,6 +73,14 @@ class Sesiones extends \yii\db\ActiveRecord
         return $this->idioma->descripcion;
     }
 
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getFin()
+    {
+        return $this->fin;
+    }
+
 
     /**
      * @return \yii\db\ActiveQuery

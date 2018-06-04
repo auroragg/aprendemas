@@ -8,9 +8,10 @@ drop table IF EXISTS niveles CASCADE;
 drop table IF EXISTS preguntas CASCADE;
 drop table IF EXISTS respuestas CASCADE;
 drop table IF EXISTS sesiones CASCADE;
+drop table IF EXISTS usuarios_sesiones CASCADE;
 drop table IF EXISTS sesiones_apartados CASCADE;
 drop table IF EXISTS examen CASCADE;
-drop table IF EXISTS sesiones_temas CASCADE;
+/*drop table IF EXISTS sesiones_temas CASCADE;*/
 
 create table roles (
   id_rol bigserial constraint pk_roles primary key,
@@ -73,18 +74,40 @@ insert into temas (titulo, descripcion, id_idioma) values ('Tema 1','Descripció
 insert into temas (titulo, descripcion, id_idioma) values ('Tema 2','Descripción del tema 2', 2);
 insert into temas (titulo, descripcion, id_idioma) values ('Tema 3','Descripción del tema 3', 2);
 insert into temas (titulo, descripcion, id_idioma) values ('Tema 4','Descripción del tema 4', 2);
+insert into temas (titulo, descripcion, id_idioma) values ('Tême 1','Recherche del tema 1', 3);
+insert into temas (titulo, descripcion, id_idioma) values ('Tême 2','Manger del tema 2', 3);
+insert into temas (titulo, descripcion, id_idioma) values ('Tême 3','Porculer del tema 3', 3);
+insert into temas (titulo, descripcion, id_idioma) values ('Tême 1','Brugenbanveh 1', 4);
+insert into temas (titulo, descripcion, id_idioma) values ('Tême 2','Gutten Morguen 2', 4);
+insert into temas (titulo, descripcion, id_idioma) values ('Tême 3','Valar morguris 3', 4);
+insert into temas (titulo, descripcion, id_idioma) values ('Tême 1','Il bambino 1', 5);
+insert into temas (titulo, descripcion, id_idioma) values ('Tême 2','Pizza bona 2', 5);
+insert into temas (titulo, descripcion, id_idioma) values ('Tême 3','Arriva a la Italia 3', 5);
 
 create table apartados (
   id_apartado bigserial     constraint pk_apartados primary key,
   id_tema     bigint        references temas (id_tema) on delete no action on update cascade,
   titulo      varchar(100)  not null,
-  contenido   text not null
+  contenido   text not null,
+  finalizado boolean not null default false
 );
 
 insert into apartados (id_tema, titulo, contenido) values (1,'1-Significado  verbo To Be','contenido');
 insert into apartados (id_tema, titulo, contenido) values (1,'2-Conjugacion en presente verbo To Be','contenido');
 insert into apartados (id_tema, titulo, contenido) values (1,'3-Usos del verbo To Be','contenido');
+insert into apartados (id_tema, titulo, contenido) values (2,'1-Otros usos ','contenido');
+insert into apartados (id_tema, titulo, contenido) values (3,'1-Otro apartado más','contenido');
+insert into apartados (id_tema, titulo, contenido) values (4,'1-Otro apartado más','contenido');
 insert into apartados (id_tema, titulo, contenido) values (5,'1-Conjugacion verbo Ser','contenido');
+insert into apartados (id_tema, titulo, contenido) values (5,'1-Conjugacion verbo Ser','contenido');
+insert into apartados (id_tema, titulo, contenido) values (9,'1-Ques que vou va faire?','contenido');
+insert into apartados (id_tema, titulo, contenido) values (9,'2-Coman sa apelle?','contenido');
+insert into apartados (id_tema, titulo, contenido) values (12,'1-Gutten Triken forgotten','contenido');
+insert into apartados (id_tema, titulo, contenido) values (13,'1-Gutten Triken forgotten','contenido');
+insert into apartados (id_tema, titulo, contenido) values (14,'1-Il mio penna que molto miseria','contenido');
+insert into apartados (id_tema, titulo, contenido) values (15,'1-Il mio penna que molto miseria','contenido');
+insert into apartados (id_tema, titulo, contenido) values (16,'1-Il mio penna que molto miseria','contenido');
+insert into apartados (id_tema, titulo, contenido) values (17,'1-Il mio penna que molto miseria','contenido');
 
 
 create table preguntas (
@@ -113,10 +136,24 @@ create table sesiones (
   fin         boolean not null default false
 );
 
-insert into sesiones (id_usuario, id_idioma, fin) values (1, 1, false);
-insert into sesiones (id_usuario, id_idioma, fin) values (1, 2, false);
+insert into sesiones (id_usuario, id_idioma, fin) values ( 1, 1, false);
+insert into sesiones (id_usuario, id_idioma, fin) values ( 1, 2, false);
+insert into sesiones (id_usuario, id_idioma, fin) values ( 1, 3, true);
 
-create table sesiones_temas (
+/*NUEVO
+create table usuarios_sesiones(
+    id_usuario_sesion bigserial constraint pk_usuarios_sesiones primary key,
+    id_usuario bigint not null references usuarios (id) on delete no action on update cascade,
+    id_sesion bigint not null references sesiones (id_sesion) on delete no action on update cascade
+);
+
+insert into usuarios_sesiones (id_usuario, id_sesion) values ( 1, 1);
+insert into usuarios_sesiones (id_usuario, id_sesion) values ( 1, 2);
+insert into usuarios_sesiones (id_usuario, id_sesion) values ( 1, 3);*/
+
+
+
+/*create table sesiones_temas (
   id_sesion_tema bigserial constraint pk_sesiones_temas primary key,
   id_sesion bigint references sesiones (id_sesion) on delete no action on update cascade,
   id_tema bigint references temas (id_tema) on delete no action on update cascade,
@@ -129,18 +166,20 @@ insert into sesiones_temas (id_sesion, id_tema, finalizado) values (1, 2, true);
 insert into sesiones_temas (id_sesion, id_tema, finalizado) values (1, 3, false);
 insert into sesiones_temas (id_sesion, id_tema, finalizado) values (2, 5, true);
 insert into sesiones_temas (id_sesion, id_tema, finalizado) values (2, 6, false);
-
+*/
 create table sesiones_apartados (
   id_sesion_apartado bigserial constraint pk_sesiones_apartados primary key,
-  id_sesion_tema bigint references sesiones_temas (id_sesion_tema) on delete no action on update cascade,
+  id_sesion bigint references sesiones (id_sesion) on delete no action on update cascade,
   id_apartado bigint references apartados (id_apartado) on delete no action on update cascade,
-  fecha timestamp not null  default current_timestamp,
   finalizado boolean not null default false
 );
 
-insert into sesiones_apartados (id_sesion_tema, id_apartado, finalizado) values (1, 1, false);
-insert into sesiones_apartados (id_sesion_tema, id_apartado, finalizado) values (1, 2, false);
-insert into sesiones_apartados (id_sesion_tema, id_apartado, finalizado) values (1, 3, true);
+insert into sesiones_apartados (id_sesion, id_apartado, finalizado) values (1, 1, false);
+insert into sesiones_apartados (id_sesion, id_apartado, finalizado) values (2, 1, true);
+insert into sesiones_apartados (id_sesion, id_apartado, finalizado) values (3, 1, false);
+insert into sesiones_apartados (id_sesion, id_apartado, finalizado) values (1, 2, false);
+insert into sesiones_apartados (id_sesion, id_apartado, finalizado) values (1, 4, true);
+insert into sesiones_apartados (id_sesion, id_apartado, finalizado) values (1, 6, true);
 
 create table examen (
   id_examen bigserial constraint pk_examen primary key,
