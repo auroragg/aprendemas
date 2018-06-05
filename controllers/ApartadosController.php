@@ -5,6 +5,7 @@ namespace app\controllers;
 use Yii;
 use app\models\Apartados;
 use app\models\Temas;
+use app\models\Idiomas;
 use app\models\ApartadosSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -58,15 +59,71 @@ class ApartadosController extends Controller
         ]);
     }
 
+    /**
+     * Mostrar los apartados de los temas.
+     * @param integer $id
+     * @return mixed
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+
     public function actionApartado($id)
     {
         $id_tema = Apartados::findOne(['id_apartado' => $id])->id_tema;
         $id_idioma = Temas::findOne(['id_tema'=>$id_tema])->id_idioma;
         $temas = Temas::findAll(['id_idioma' => $id_idioma]);
         $apartado = Apartados::findOne(['id_apartado' => $id]);
+        $idioma = Idiomas::findOne(['id_idioma' => $id_idioma]);
+
+        $htmlApartado[]=
+        '<p>' . $apartado->titulo . '</p>' .
+        '<p>' . $apartado->contenido . '</p>';
+
+        $htmlTemas[] = '<h3>' . $idioma->descripcion . '</h3>';
+
+        foreach ($temas as $tema) {
+            $apartados = $tema->apartados;
+            $htmlTemas[] = '<div class="col-sm-12">' .
+                '<ul>
+                    <li data-toggle="collapse" data-target=".demo' .  $tema->id_tema . '">' .  $tema->titulo . '</li>' .
+                    '<div class="col-xs-12 collapse demo' .  $tema->id_tema . '">';
+                '</ul>';
+                foreach ($apartados as $apartado) {
+                         $htmlInterm[] = '<p><a class= "apartado" id="' .  $apartado->id_apartado . '" href="/index.php?r=apartados/apartado&id=' .  $apartado->id_apartado . '">'
+                          . $apartado->titulo . '</a></p>';
+                }
+            $htmlTemas[] =implode($htmlInterm) . '</div></div>';
+            $htmlInterm = [];
+        };
 
 
+        $htmlTemas = implode($htmlTemas);
+        $htmlApartado = implode($htmlApartado);
         return $this->render('muestraApartado', [
+            'htmlApartado' => $htmlApartado,
+            'htmlTemas' => $htmlTemas,
+            'apartado' => $apartado,
+
+        ]);
+    }
+
+    /**
+     * Mostrar el test.
+     * @param integer $id
+     * @return mixed
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+
+    public function actionTest($id)
+    {
+        $id_tema = Apartados::findOne(['id_apartado' => $id])->id_tema;
+        $id_idioma = Temas::findOne(['id_tema'=>$id_tema])->id_idioma;
+        $temas = Temas::findAll(['id_idioma' => $id_idioma]);
+        $apartado = Apartados::findOne(['id_apartado' => $id]);
+        $idioma = Idiomas::findOne(['id_idioma' => $id_idioma]);
+        var_dump($apartado->preguntas); die();
+
+
+        return $this->render('muestraTest', [
             'apartado' => $apartado,
 
         ]);
