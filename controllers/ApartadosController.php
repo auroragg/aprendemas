@@ -120,7 +120,7 @@ class ApartadosController extends Controller
         $temas = Temas::findAll(['id_idioma' => $id_idioma]);
         $apartado = Apartados::findOne(['id_apartado' => $id]);
         $idioma = Idiomas::findOne(['id_idioma' => $id_idioma]);
-        var_dump($apartado->preguntas); die();
+        //var_dump($apartado->preguntas); die();
 
 
         return $this->render('muestraTest', [

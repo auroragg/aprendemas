@@ -9,6 +9,10 @@ $this->title = 'Apartado';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-index">
+        <?php $preguntas = $apartado->preguntas;
+        foreach($preguntas as $pregunta){
+            echo $pregunta->pregunta;
+        }
+        ?>
 
-        <?php var_dump($apartado->pregunta); die(); ?>
 </div>
