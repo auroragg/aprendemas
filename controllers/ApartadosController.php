@@ -6,6 +6,8 @@ use Yii;
 use app\models\Apartados;
 use app\models\Temas;
 use app\models\Idiomas;
+use app\models\Preguntas;
+use app\models\Respuestas;
 use app\models\ApartadosSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -66,7 +68,7 @@ class ApartadosController extends Controller
      * @throws NotFoundHttpException if the model cannot be found
      */
 
-    public function actionApartado($id)
+    public function actionApartado($id, $id_sesion)
     {
         $id_tema = Apartados::findOne(['id_apartado' => $id])->id_tema;
         $id_idioma = Temas::findOne(['id_tema'=>$id_tema])->id_idioma;
@@ -75,27 +77,37 @@ class ApartadosController extends Controller
         $idioma = Idiomas::findOne(['id_idioma' => $id_idioma]);
 
         $htmlApartado[]=
-        '<p>' . $apartado->titulo . '</p>' .
-        '<p>' . $apartado->contenido . '</p>';
-
+            '<div class="col-sm-12" id="encabezado_apart">' .
+                '<div class="col-sm-9 titulo_apart">' .
+                    '<p>' . $apartado->titulo . '</p>' .
+                '</div>' .
+                '<div class="col-sm-3 puntuacion_apart">' .
+                    '<p>Puntuación</p>' .
+                    '<p id="nota">0</p>' .
+                '</div>' .
+            '</div>' .
+            '<div class="col-sm-12" id="contenido_apart">' .
+                '<p>' . $apartado->contenido . '</p>' .
+            '</div>';
         $htmlTemas[] = '<h3>' . $idioma->descripcion . '</h3>';
 
         foreach ($temas as $tema) {
             $apartados = $tema->apartados;
+            $in = $tema->id_tema == $id_tema ? ' in' : '';
             $htmlTemas[] = '<div class="col-sm-12">' .
                 '<ul>
                     <li data-toggle="collapse" data-target=".demo' .  $tema->id_tema . '">' .  $tema->titulo . '</li>' .
-                    '<div class="col-xs-12 collapse demo' .  $tema->id_tema . '">';
+                    '<div class="col-xs-12 collapse' . $in . ' demo' .  $tema->id_tema . '">';
                 '</ul>';
                 foreach ($apartados as $apartado) {
-                         $htmlInterm[] = '<p><a class= "apartado" id="' .  $apartado->id_apartado . '" href="/index.php?r=apartados/apartado&id=' .  $apartado->id_apartado . '">'
+                         $htmlInterm[] = '<p><a class= "apartado" id="' .  $apartado->id_apartado . '" href="/index.php?r=apartados/apartado&id=' .  $apartado->id_apartado . '&id_sesion=' . $id_sesion . '">'
                           . $apartado->titulo . '</a></p>';
                 }
             $htmlTemas[] =implode($htmlInterm) . '</div></div>';
             $htmlInterm = [];
         };
 
-
+        $htmlApartado[] = '<button type="button" data-apartado="' . $id . '" data-sesion= ' . $id_sesion . ' class="btn btn-primary btn-block" id="test">Hacer el Test</button>';
         $htmlTemas = implode($htmlTemas);
         $htmlApartado = implode($htmlApartado);
         return $this->render('muestraApartado', [
@@ -113,18 +125,33 @@ class ApartadosController extends Controller
      * @throws NotFoundHttpException if the model cannot be found
      */
 
-    public function actionTest($id)
+    public function actionTest($id, $id_sesion)
     {
-        $id_tema = Apartados::findOne(['id_apartado' => $id])->id_tema;
-        $id_idioma = Temas::findOne(['id_tema'=>$id_tema])->id_idioma;
-        $temas = Temas::findAll(['id_idioma' => $id_idioma]);
+
         $apartado = Apartados::findOne(['id_apartado' => $id]);
-        $idioma = Idiomas::findOne(['id_idioma' => $id_idioma]);
-        //var_dump($apartado->preguntas); die();
 
+        $preguntas = $apartado->preguntas;
+        foreach ($preguntas as $pregunta) {
+            $respuestas = Respuestas::findAll(['id_pregunta' => $pregunta->id_pregunta]);
+            $htmlPreg[]=
+                    '<div class="col-sm-12 titulo_apart">' .
+                        '<p>' . $pregunta->id_pregunta . '-' . $pregunta->pregunta . '</p>' .
+                    '</div>';
+            foreach ($respuestas as $respuesta) {
+                $htmlResp[]=
+                        '<label class="radio">' .
+                            '<input type="radio" name="' . $pregunta->id_pregunta .'">' . $respuesta->descripcion .
+                        '</label>';
+            }
+            $htmlPreg[] =implode($htmlResp);
+            $htmlResp = [];
+        }
 
+        $htmlPreg[] = '<button type="button" data-apartado="' . $id . '" data-sesion= ' . $id_sesion . ' class="btn btn-primary btn-block" id="corregir">Corregir</button>';
+
+        $htmlPreg =implode($htmlPreg);
         return $this->render('muestraTest', [
-            'apartado' => $apartado,
+            'htmlPreg' => $htmlPreg,
 
         ]);
     }

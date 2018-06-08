@@ -66,7 +66,7 @@ create table temas (
 
 );
 
-insert into temas (titulo, descripcion, id_idioma) values ('Tema 1 -Verbo To Be-','This is the description of Theme 1', 1);
+insert into temas (titulo, descripcion, id_idioma) values ('Tema 1 -Verbo To Be-','Verbo To Be: Significado, usos, conjugación', 1);
 insert into temas (titulo, descripcion, id_idioma) values ('Tema 2','This is the description of Theme 2', 1);
 insert into temas (titulo, descripcion, id_idioma) values ('Tema 3','This is the description of Theme 3', 1);
 insert into temas (titulo, descripcion, id_idioma) values ('Tema 4','This is the description of Theme 4', 1);
@@ -89,25 +89,33 @@ create table apartados (
   id_tema     bigint        references temas (id_tema) on delete no action on update cascade,
   titulo      varchar(100)  not null,
   contenido   text not null,
-  finalizado boolean not null default false
+  puntuacion_minima integer
 );
 
-insert into apartados (id_tema, titulo, contenido) values (1,'1-Significado  verbo To Be','contenido');
-insert into apartados (id_tema, titulo, contenido) values (1,'2-Conjugacion en presente verbo To Be','contenido');
-insert into apartados (id_tema, titulo, contenido) values (1,'3-Usos del verbo To Be','contenido');
-insert into apartados (id_tema, titulo, contenido) values (2,'1-Otros usos ','contenido');
-insert into apartados (id_tema, titulo, contenido) values (3,'1-Otro apartado más','contenido');
-insert into apartados (id_tema, titulo, contenido) values (4,'1-Otro apartado más','contenido');
-insert into apartados (id_tema, titulo, contenido) values (5,'1-Conjugacion verbo Ser','contenido');
-insert into apartados (id_tema, titulo, contenido) values (5,'1-Conjugacion verbo Ser','contenido');
-insert into apartados (id_tema, titulo, contenido) values (9,'1-Ques que vou va faire?','contenido');
-insert into apartados (id_tema, titulo, contenido) values (9,'2-Coman sa apelle?','contenido');
-insert into apartados (id_tema, titulo, contenido) values (12,'1-Gutten Triken forgotten','contenido');
-insert into apartados (id_tema, titulo, contenido) values (13,'1-Gutten Triken forgotten','contenido');
-insert into apartados (id_tema, titulo, contenido) values (14,'1-Il mio penna que molto miseria','contenido');
-insert into apartados (id_tema, titulo, contenido) values (15,'1-Il mio penna que molto miseria','contenido');
-insert into apartados (id_tema, titulo, contenido) values (16,'1-Il mio penna que molto miseria','contenido');
-insert into apartados (id_tema, titulo, contenido) values (17,'1-Il mio penna que molto miseria','contenido');
+insert into apartados (id_tema, titulo, contenido, puntuacion_minima) values (1,'1-Verbo To Be','El verbo to be (ser/estar) es uno de los verbos que más se usa en inglés y es un verbo irregular, así que es importante saber bien cómo se conjuga y cuándo se usa. Conjugacion verbo To Be presente:
+I am</br>
+You are
+He/She is
+We are
+You are
+They are', 5);
+insert into apartados (id_tema, titulo, contenido, puntuacion_minima) values (1,'2-Usos del verbo To Be','Este verbo se usa con adjetivos,
+ nacionalidades, para descripciones, para hablar de estados físicos y mentales, para decir la edad, para ocupaciones y
+ para decir la hora', 5);
+insert into apartados (id_tema, titulo, contenido, puntuacion_minima) values (1,'3-Pasado del verbo To Be','contenido', 5);
+insert into apartados (id_tema, titulo, contenido, puntuacion_minima) values (2,'1-Otros usos ','contenido', 5);
+insert into apartados (id_tema, titulo, contenido, puntuacion_minima) values (3,'1-Otro apartado más','contenido', 5);
+insert into apartados (id_tema, titulo, contenido, puntuacion_minima) values (4,'1-Otro apartado más','contenido', 5);
+insert into apartados (id_tema, titulo, contenido, puntuacion_minima) values (5,'1-Conjugacion verbo Ser','contenido', 5);
+insert into apartados (id_tema, titulo, contenido, puntuacion_minima) values (5,'1-Conjugacion verbo Ser','contenido', 5);
+insert into apartados (id_tema, titulo, contenido, puntuacion_minima) values (9,'1-Ques que vou va faire?','contenido', 5);
+insert into apartados (id_tema, titulo, contenido, puntuacion_minima) values (9,'2-Coman sa apelle?','contenido', 5);
+insert into apartados (id_tema, titulo, contenido, puntuacion_minima) values (12,'1-Gutten Triken forgotten','contenido', 5);
+insert into apartados (id_tema, titulo, contenido, puntuacion_minima) values (13,'1-Gutten Triken forgotten','contenido', 5);
+insert into apartados (id_tema, titulo, contenido, puntuacion_minima) values (14,'1-Il mio penna que molto miseria','contenido', 5);
+insert into apartados (id_tema, titulo, contenido, puntuacion_minima) values (15,'1-Il mio penna que molto miseria','contenido', 5);
+insert into apartados (id_tema, titulo, contenido, puntuacion_minima) values (16,'1-Il mio penna que molto miseria','contenido', 5);
+insert into apartados (id_tema, titulo, contenido, puntuacion_minima) values (17,'1-Il mio penna que molto miseria','contenido', 5);
 
 
 create table preguntas (
@@ -117,15 +125,34 @@ create table preguntas (
 );
 
 insert into preguntas (id_apartado, pregunta) values (1,'¿Qué significa verbo To Be?');
+insert into preguntas (id_apartado, pregunta) values (1,'Conjuga el verbo To Be:  I ______');
+insert into preguntas (id_apartado, pregunta) values (1,'Conjuga el verbo To Be:  We ______');
+insert into preguntas (id_apartado, pregunta) values (1,'Conjuga el verbo To Be:  She ______');
 
 
 create table respuestas (
   id_respuesta bigserial constraint pk_respuestas primary key,
   id_pregunta  bigint    references preguntas (id_pregunta) on delete no action on update cascade,
-  descripcion varchar(50)
+  descripcion varchar(50),
+  es_correcta boolean
 );
 
-insert into respuestas (id_pregunta, descripcion) values (1,'ser o estar');
+insert into respuestas (id_pregunta, descripcion, es_correcta) values (1,'ser o estar', true);
+insert into respuestas (id_pregunta, descripcion, es_correcta) values (1,'ser', false);
+insert into respuestas (id_pregunta, descripcion, es_correcta) values (1,'estar', false);
+insert into respuestas (id_pregunta, descripcion, es_correcta) values (1,'poder', false);
+insert into respuestas (id_pregunta, descripcion, es_correcta) values (2,'can', false);
+insert into respuestas (id_pregunta, descripcion, es_correcta) values (2,'is', false);
+insert into respuestas (id_pregunta, descripcion, es_correcta) values (2,'are', false);
+insert into respuestas (id_pregunta, descripcion, es_correcta) values (2,'am', true);
+insert into respuestas (id_pregunta, descripcion, es_correcta) values (3,'can', false);
+insert into respuestas (id_pregunta, descripcion, es_correcta) values (3,'is', false);
+insert into respuestas (id_pregunta, descripcion, es_correcta) values (3,'are', true);
+insert into respuestas (id_pregunta, descripcion, es_correcta) values (3,'am', false);
+insert into respuestas (id_pregunta, descripcion, es_correcta) values (4,'can', false);
+insert into respuestas (id_pregunta, descripcion, es_correcta) values (4,'is', true);
+insert into respuestas (id_pregunta, descripcion, es_correcta) values (4,'are', false);
+insert into respuestas (id_pregunta, descripcion, es_correcta) values (4,'am', false);
 
 
 create table sesiones (

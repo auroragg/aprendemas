@@ -8,10 +8,13 @@ body {
     height: auto;
     margin: 0 auto -60px;
     padding: 0 0 60px;
+
 }
 
 .wrap > .container {
     padding: 70px 15px 20px;
+
+
 }
 
 .footer {
@@ -118,6 +121,16 @@ a.desc:after {
 
 /* IMAGENES */
 
+    #logo  {
+        display: inline;
+        width: 70px;
+        height: 40px;
+    }
+
+    /* .nav-mod{
+        background-color: #FFFFFF;
+        color: #000000;
+    } */
     .banderas {
         width: 64px;
         border-radius: 10%;

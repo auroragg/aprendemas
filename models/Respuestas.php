@@ -10,6 +10,7 @@ use Yii;
  * @property int $id_respuesta
  * @property int $id_pregunta
  * @property string $descripcion
+ * @property bool $es_correcta
  *
  * @property Preguntas $pregunta
  * @property Resultados[] $resultados
@@ -32,6 +33,7 @@ class Respuestas extends \yii\db\ActiveRecord
         return [
             [['id_pregunta'], 'default', 'value' => null],
             [['id_pregunta'], 'integer'],
+            [['es_correcta'], 'boolean'],
             [['descripcion'], 'string', 'max' => 50],
             [['id_pregunta'], 'exist', 'skipOnError' => true, 'targetClass' => Preguntas::className(), 'targetAttribute' => ['id_pregunta' => 'id_pregunta']],
         ];
@@ -46,6 +48,7 @@ class Respuestas extends \yii\db\ActiveRecord
             'id_respuesta' => 'Id Respuesta',
             'id_pregunta' => 'Id Pregunta',
             'descripcion' => 'Descripcion',
+            'es_correcta' => 'Es Correcta',
         ];
     }
 

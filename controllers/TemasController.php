@@ -63,7 +63,7 @@ class TemasController extends Controller
                         'data-target=".demo' .  $tema->id_tema . '">Ver Apartados    <span class="glyphicon glyphicon-collapse-down"></button>' .
                         '<div class="col-xs-12 collapse demo' .  $tema->id_tema . '">';
                 foreach ($apartados as $apartado) {
-                         $htmlInterm[] = '<p><a href="/index.php?r=apartados/apartado&id=' .  $apartado->id_apartado . '">'
+                         $htmlInterm[] = '<p><a href="/index.php?r=apartados/apartado&id=' .  $apartado->id_apartado . '&id_sesion=' . $id_sesion .'">'
                           . $apartado->titulo . '</a></p>';
                 }
             $htmlStr[] =implode($htmlInterm) . '</div></div>';

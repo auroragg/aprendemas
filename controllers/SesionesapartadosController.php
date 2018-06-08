@@ -5,6 +5,7 @@ namespace app\controllers;
 use Yii;
 use app\models\SesionesApartados;
 use app\models\SesionesApartadosSearch;
+use yii\helpers\Json;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -73,6 +74,28 @@ class SesionesapartadosController extends Controller
         return $this->render('create', [
             'model' => $model,
         ]);
+    }
+
+
+        /**
+         * Crea un registro en la tabla sesiones_apartados
+         * If creation is successful, the browser will be redirected to the 'view' page.
+         * @return mixed
+         */
+
+    public function actionCrear($id_sesion, $id_apartado)
+    {
+            $model = new SesionesApartados();
+            $model->id_sesion = $id_sesion;
+            $model->id_apartado = $id_apartado;
+            $model->finalizado = false;
+            $model->save();
+
+            $ultimo = Sesionesapartados::find()->orderBy(['id_sesion_apartado'=>SORT_DESC])->one();
+            $ultimo = $ultimo->id_sesion_apartado;
+            //sort
+            var_dump($ultimo);
+            return Json::encode($ultimo);
     }
 
     /**

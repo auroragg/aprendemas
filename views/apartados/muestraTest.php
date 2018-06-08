@@ -2,17 +2,19 @@
 
 use yii\helpers\Html;
 use app\models\Apartados;
+use app\models\Respuestas;
 
 /* @var $this yii\web\View */
 
-$this->title = 'Apartado';
+$this->registerJsFile(
+    '@web/js/test.js',
+    ['depends' => [\yii\web\JqueryAsset::className()]]
+);
+
+$this->title = 'Test';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-index">
-        <?php $preguntas = $apartado->preguntas;
-        foreach($preguntas as $pregunta){
-            echo $pregunta->pregunta;
-        }
-        ?>
+        <?= $htmlPreg ?>
 
 </div>

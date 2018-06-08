@@ -11,6 +11,7 @@ use Yii;
  * @property int $id_tema
  * @property string $titulo
  * @property string $contenido
+ * @property int $puntuacion_minima
  *
  * @property Temas $tema
  * @property Preguntas[] $preguntas
@@ -32,8 +33,8 @@ class Apartados extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_tema'], 'default', 'value' => null],
-            [['id_tema'], 'integer'],
+            [['id_tema', 'puntuacion_minima'], 'default', 'value' => null],
+            [['id_tema', 'puntuacion_minima'], 'integer'],
             [['titulo', 'contenido'], 'required'],
             [['contenido'], 'string'],
             [['titulo'], 'string', 'max' => 100],
@@ -51,6 +52,7 @@ class Apartados extends \yii\db\ActiveRecord
             'id_tema' => 'Id Tema',
             'titulo' => 'Titulo',
             'contenido' => 'Contenido',
+            'puntuacion_minima' => 'Puntuacion Minima',
         ];
     }
 

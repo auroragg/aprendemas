@@ -10,9 +10,15 @@ http://glyphicons.com/ o mirar kartik-yii2-icons
 muestraTemas.php como hago para poner los glyphicons con un foreach
 falta mostrar test y del idioma finalizado la nota
 
+CORREGIR TEST Y NOTA
+PONER CONTENIDO DE TEMA MEJOR
 
+SESIONES USUARIO - MOSTRAR DEBAJO DEL ICONO CUANTOS TEMAS HAS COMENZADO
+REGISTRARSE DEL LOGIN?
 
-
+T1 SIEMPRE LO MUESTRE ACTIVO
+LOS INACTIVOS QUITAR EL COLLAPSE DE APARTADOS
+PONER EN ACTIVO NUEVO TEMAS SI ACABA LOS APARTADOS DEL ANTERIOR
 
 //requisitos ¿Cómo añadir css, js, jQuery, plugin, almacenamiento en cliente?
 -validacion formulario

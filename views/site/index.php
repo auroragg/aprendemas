@@ -18,7 +18,7 @@ $this->title = 'AprendeMas';
         <?php if(!$logueado) {
                     if ($haySesiones != null) {?>
                         <p>
-                            <a class="btn btn-lg btn-success boton-sombra" href="index.php?r=sesiones/indsesionesusuario">Empezar</a>
+                            <a class="btn btn-lg btn-success boton-sombra" href="index.php?r=sesiones/indsesionesusuario">Sigue tus cursos</a>
                         </p>
                         <p class="btn btn-lg btn-success boton-sombra">Escoge uno de los idiomas de abajo para comenzar un curso.</p>
                     <?php } else {?>

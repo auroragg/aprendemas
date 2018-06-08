@@ -29,10 +29,12 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => Yii::$app->name,
+        'brandLabel'=> '<img src="images/logo.jpeg" id ="logo" alt="Logotipo AprendeMas" >  ' . Yii::$app->name,
+
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
-            'class' => 'navbar-inverse navbar-fixed-top',
+            'class' => ' nav-mod navbar-inverse navbar-fixed-top',
+
         ],
     ]);
     echo Nav::widget([
@@ -70,7 +72,7 @@ AppAsset::register($this);
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
+        <p class="pull-left">&copy; AprendeMas <?= date('Y') ?></p>
 
         <p class="pull-right"><?= Yii::powered() ?></p>
     </div>

@@ -225,7 +225,7 @@ class SiteController extends Controller
                 <script type="text/javascript" >
                 document.getElementById("idioma' . $key->id_idioma . '").onclick = function(){location.assign("/index.php?r=sesiones/existesesion&id_idioma=' . $key->id_idioma . '");};
                 </script>
-                    <img class="banderas" src="' . $key->icono . '" title="' . $key->descripcion . '" />
+                    <img id="' . $key->descripcion . '" class="banderas" src="' . $key->icono . '" title="' . $key->descripcion . '" />
                 </div>
                 <div class="col-xs-12 descIdioma">
                     <p>' . $key->descripcion . '</p>

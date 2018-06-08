@@ -15,6 +15,5 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="col-md-3"><?=$htmlTemas?></div>
         <div class="col-md-9">
             <?=$htmlApartado?>
-            <button type="button" class="btn btn-primary btn-block" id="test">Hacer el Test</button>
         </div>
 </div>
