@@ -18,7 +18,7 @@ class ResultadosSearch extends Resultados
     public function rules()
     {
         return [
-            [['id_resultado', 'id_sesion_apartado', 'id_pregunta', 'id_respuesta', 'puntuacion_minima'], 'integer'],
+            [['id_resultado', 'id_sesion_apartado', 'id_pregunta', 'id_respuesta'], 'integer'],
             [['fecha'], 'safe'],
             [['correcto'], 'boolean'],
         ];
@@ -66,7 +66,6 @@ class ResultadosSearch extends Resultados
             'id_pregunta' => $this->id_pregunta,
             'id_respuesta' => $this->id_respuesta,
             'correcto' => $this->correcto,
-            'puntuacion_minima' => $this->puntuacion_minima,
         ]);
 
         return $dataProvider;

@@ -173,6 +173,11 @@ a.desc:after {
 }
 
 /* TEXTOS */
+.izquierda {
+    float: left;
+    padding: 20px;
+}
+
 .descIdioma {
     text-align: center;
 }

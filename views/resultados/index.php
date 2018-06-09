@@ -31,7 +31,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'id_pregunta',
             'id_respuesta',
             'correcto:boolean',
-            'puntuacion_minima',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

@@ -13,7 +13,6 @@ use Yii;
  * @property int $id_pregunta
  * @property int $id_respuesta
  * @property bool $correcto
- * @property int $puntuacion_minima
  *
  * @property Preguntas $pregunta
  * @property Respuestas $respuesta
@@ -35,10 +34,10 @@ class Resultados extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['fecha', 'correcto', 'puntuacion_minima'], 'required'],
             [['fecha'], 'safe'],
-            [['id_sesion_apartado', 'id_pregunta', 'id_respuesta', 'puntuacion_minima'], 'default', 'value' => null],
-            [['id_sesion_apartado', 'id_pregunta', 'id_respuesta', 'puntuacion_minima'], 'integer'],
+            [['id_sesion_apartado', 'id_pregunta', 'id_respuesta'], 'default', 'value' => null],
+            [['id_sesion_apartado', 'id_pregunta', 'id_respuesta'], 'integer'],
+            [['correcto'], 'required'],
             [['correcto'], 'boolean'],
             [['id_pregunta'], 'exist', 'skipOnError' => true, 'targetClass' => Preguntas::className(), 'targetAttribute' => ['id_pregunta' => 'id_pregunta']],
             [['id_respuesta'], 'exist', 'skipOnError' => true, 'targetClass' => Respuestas::className(), 'targetAttribute' => ['id_respuesta' => 'id_respuesta']],
@@ -58,7 +57,6 @@ class Resultados extends \yii\db\ActiveRecord
             'id_pregunta' => 'Id Pregunta',
             'id_respuesta' => 'Id Respuesta',
             'correcto' => 'Correcto',
-            'puntuacion_minima' => 'Puntuacion Minima',
         ];
     }
 

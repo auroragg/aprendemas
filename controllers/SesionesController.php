@@ -78,7 +78,7 @@ class SesionesController extends Controller
     }
 
     /**
-     * Comprobar si esa sesión ya existe
+     * Comprobar si esa sesión ya existe y sino creamos una nueva
      * @return mixed
      */
     public function actionExistesesion($id_idioma)

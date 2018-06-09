@@ -63,7 +63,7 @@ class ApartadosController extends Controller
 
     /**
      * Mostrar los apartados de los temas.
-     * @param integer $id
+     * @param integer $id, $id_sesion
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
@@ -120,7 +120,7 @@ class ApartadosController extends Controller
 
     /**
      * Mostrar el test.
-     * @param integer $id
+     * @param integer $id, $id_sesion
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
@@ -140,7 +140,7 @@ class ApartadosController extends Controller
             foreach ($respuestas as $respuesta) {
                 $htmlResp[]=
                         '<label class="radio">' .
-                            '<input type="radio" name="' . $pregunta->id_pregunta .'">' . $respuesta->descripcion .
+                            '<input type="radio" id="' . $respuesta->id_respuesta . '" name="' . $pregunta->id_pregunta .'">' . $respuesta->descripcion .
                         '</label>';
             }
             $htmlPreg[] =implode($htmlResp);

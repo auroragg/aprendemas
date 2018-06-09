@@ -92,9 +92,6 @@ class SesionesapartadosController extends Controller
             $model->save();
 
             $ultimo = Sesionesapartados::find()->orderBy(['id_sesion_apartado'=>SORT_DESC])->one();
-            $ultimo = $ultimo->id_sesion_apartado;
-            //sort
-            var_dump($ultimo);
             return Json::encode($ultimo);
     }
 

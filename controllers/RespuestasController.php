@@ -8,6 +8,8 @@ use app\models\RespuestasSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\helpers\Json;
+
 
 /**
  * RespuestasController implements the CRUD actions for Respuestas model.
@@ -123,5 +125,18 @@ class RespuestasController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    /**
+     * Crea un registro en la tabla sesiones_apartados
+     * If creation is successful, the browser will be redirected to the 'view' page.
+     * @return mixed
+     */
+
+    public function actionCorrecta($id_respuesta)
+    {
+        $correcta = Respuestas::findOne(['id_respuesta' => $id_respuesta])->es_correcta;
+
+        return Json::encode($correcta);
     }
 }

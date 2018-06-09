@@ -92,13 +92,23 @@ create table apartados (
   puntuacion_minima integer
 );
 
-insert into apartados (id_tema, titulo, contenido, puntuacion_minima) values (1,'1-Verbo To Be','El verbo to be (ser/estar) es uno de los verbos que más se usa en inglés y es un verbo irregular, así que es importante saber bien cómo se conjuga y cuándo se usa. Conjugacion verbo To Be presente:
-I am</br>
-You are
-He/She is
-We are
-You are
-They are', 5);
+insert into apartados (id_tema, titulo, contenido, puntuacion_minima) values (1,'1-Verbo To Be',
+'El verbo <strong>To Be</strong>  es uno de los verbos que más se usa en inglés y es un verbo irregular, así que es importante saber bien cómo se conjuga y cuándo se usa.</br>
+Este verbo en español significa <strong>ser/estar</strong></br>
+<div>Conjugacion verbo To Be presente:</br>
+    <div class="izquierda">I am</br>
+    You are</br>
+    He/She is</br>
+    We are</br>
+    You are</br>
+    They are</div>
+    <div class="izquierda">I am not</br>
+    You are not</br>
+    He/She is not</br>
+    We are not</br>
+    You are not</br>
+    They are not</div>
+</div>', 5);
 insert into apartados (id_tema, titulo, contenido, puntuacion_minima) values (1,'2-Usos del verbo To Be','Este verbo se usa con adjetivos,
  nacionalidades, para descripciones, para hablar de estados físicos y mentales, para decir la edad, para ocupaciones y
  para decir la hora', 5);
@@ -221,7 +231,6 @@ create table resultados (
   id_sesion_apartado bigint references sesiones_apartados (id_sesion_apartado) on delete no action on update cascade,
   id_pregunta bigint references preguntas (id_pregunta) on delete no action on update cascade,
   id_respuesta bigint references respuestas (id_respuesta) on delete no action on update cascade,
-  correcto boolean not null,
-  puntuacion_minima integer not null
+  correcto boolean not null
 );
-insert into resultados (id_sesion_apartado, id_pregunta, id_respuesta, correcto, puntuacion_minima) values (1, 1, 1, true, 80);
+insert into resultados (id_sesion_apartado, id_pregunta, id_respuesta, correcto) values (1, 1, 1, true);

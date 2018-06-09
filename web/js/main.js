@@ -14,12 +14,12 @@ $(document).ready(function(){
         var newWindow = window.open("/index.php?r=apartados/test&id="+id_apartado+"&id_sesion="+id_sesion,"","width="+ancho+", heigth="+alto+", top="+y+",left="+x+"scrollbars=yes");
 
     });
-    
+
     $(".banderas").hover(function(){
         id_bandera = $(this).attr('id');
-        $("#"+id_bandera+"").animate({height: '100px', width:'100px'}, "slow");
+        $("#"+id_bandera+"").animate({width:'100px'}, "slow");
     }, function(){
-        $("#"+id_bandera+"").animate({height: '50px', width:'50px'}, "slow");
+        $("#"+id_bandera+"").animate({width:'64px'}, "slow");
     });
 });
 
