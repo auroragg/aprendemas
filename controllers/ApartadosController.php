@@ -77,18 +77,18 @@ class ApartadosController extends Controller
         $idioma = Idiomas::findOne(['id_idioma' => $id_idioma]);
 
         $htmlApartado[]=
-            '<div class="col-sm-12" id="encabezado_apart">' .
+            '<article class="col-sm-12" id="encabezado_apart">' .
                 '<div class="col-sm-9 titulo_apart">' .
                     '<p>' . $apartado->titulo . '</p>' .
                 '</div>' .
                 '<div class="col-sm-3 puntuacion_apart">' .
                     '<p>Puntuación</p>' .
-                    '<p id="nota">0</p>' .
+
                 '</div>' .
-            '</div>' .
-            '<div class="col-sm-12" id="contenido_apart">' .
+            '</article>' .
+            '<article class="col-sm-12" id="contenido_apart">' .
                 '<p>' . $apartado->contenido . '</p>' .
-            '</div>';
+            '</article>';
         $htmlTemas[] = '<h3>' . $idioma->descripcion . '</h3>';
 
         foreach ($temas as $tema) {

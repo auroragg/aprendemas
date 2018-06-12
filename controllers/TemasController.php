@@ -41,6 +41,8 @@ class TemasController extends Controller
     {
         $model = new Temas();
         $idioma = Sesiones::findOne(['id_sesion' => $id_sesion])->id_idioma;
+        $icono = Sesiones::findOne(['id_sesion' =>$id_sesion])->icono;
+        //var_dump($icono); die();
         $temas = Temas::findAll(['id_idioma' => $idioma]);
 
         foreach ($temas as $tema) {
@@ -49,30 +51,31 @@ class TemasController extends Controller
             foreach ($apartados as $key) {
                 /*$sesApart = $key->sesionesApartados;*/
                 $sesApart = SesionesApartados::findOne(['id_apartado' => $key->id_apartado, 'id_sesion' => $id_sesion]);
-                if ($sesApart != null ) {
+                if ($sesApart != null) {
                     $clase = "temaBox";
                     break;
                 }
             }
 
 
-            $htmlStr[] = '<div class="col-sm-3 ' . $clase . '">' .
-                '<p>' .  $tema->titulo . '<span class="glyphicon glyphicon-ok"></span></p>' .
-                '<p>' .  $tema->descripcion . '</p>' .
-                '<button type="button" class="btn btn-info col-xs-12" data-toggle="collapse"' .
+            $htmlStr[] = '<section class="col-sm-3 ' . $clase . '">' .
+                '<p>' .  $tema->titulo . '</p>' .
+                '<p class="descripcion_tema">' .  $tema->descripcion . '</p>' .
+                '<button type="button" class="btn btn-info col-xs-12" id="btn-apart" data-toggle="collapse"' .
                         'data-target=".demo' .  $tema->id_tema . '">Ver Apartados    <span class="glyphicon glyphicon-collapse-down"></button>' .
                         '<div class="col-xs-12 collapse demo' .  $tema->id_tema . '">';
                 foreach ($apartados as $apartado) {
                          $htmlInterm[] = '<p><a href="/index.php?r=apartados/apartado&id=' .  $apartado->id_apartado . '&id_sesion=' . $id_sesion .'">'
                           . $apartado->titulo . '</a></p>';
                 }
-            $htmlStr[] =implode($htmlInterm) . '</div></div>';
+            $htmlStr[] =implode($htmlInterm) . '</div></section>';
             $htmlInterm = [];
         };
 
         //var_dump($temasPendientes); die();
         $htmlStr = implode($htmlStr);
         return $this->render('muestraTemas', [
+            'icono'=> $icono,
             'temas' => $temas,
             'model' => $model,
             'htmlStr' => $htmlStr,

@@ -10,7 +10,7 @@ $this->title = 'AprendeMas';
 </head>
 <div class="site-index">
 
-    <div class="jumbotron">
+    <section class="jumbotron">
         <h1>Habla cualquier idioma</h1>
 
         <p class="lead">dedicando sólo diez minutos al día</p>
@@ -20,9 +20,9 @@ $this->title = 'AprendeMas';
                         <p>
                             <a class="btn btn-lg btn-success boton-sombra" href="index.php?r=sesiones/indsesionesusuario">Sigue tus cursos</a>
                         </p>
-                        <p class="btn btn-lg btn-success boton-sombra">Escoge uno de los idiomas de abajo para comenzar un curso.</p>
+                        <p class="btn btn-lg btn-success boton-sombra">Escoge uno de los idiomas.</p>
                     <?php } else {?>
-                        <p class="btn btn-lg btn-success boton-sombra">Escoge uno de los idiomas de abajo para comenzar un curso.</p>
+                        <p class="btn btn-lg btn-success boton-sombra">Escoge uno de los idiomas.</p>
                     <?php }
                  } else { ?>
                     <p><a class="col-xs-12 col-sm-3 col-sm-offset-2 btn btn-lg btn-success boton-sombra" href="index.php?r=site%2Fregister">Registrate</a></p>
@@ -32,7 +32,7 @@ $this->title = 'AprendeMas';
                     <p class="clearfix"></p>
                 <?php }
             ?>
-    </div>
+    </section>
 
         <?php echo $banderas ?>
 </div>

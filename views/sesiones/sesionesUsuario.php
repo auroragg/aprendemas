@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 use app\models\SesionesTemas;
+use app\models\SesionesApartados;
+use app\models\Apartados;
 use app\models\Temas;
 
 
@@ -36,7 +38,15 @@ $this->params['breadcrumbs'][] = $this->title;
                                                 <?php } else { ?> >
                                                         <?php echo $sesion->descripcionIdioma ?><br>
                                                         Tiene: <?php echo count($temas); ?> temas <br>
-                                                        //CUANTOS TEMAS HA EMPEZADO EL USUARIO
+                                                        ¡¡NO TERMINADO!!
+                                                        <?php
+                                                            // $apartadoUltimo = SesionesApartados::find()
+                                                            //                    ->where(['id_sesion' => $sesion->id_sesion])
+                                                            //                    ->orderBy(['id_apartado'=>SORT_DESC])
+                                                            //                    ->one();
+                                                            // $temaActual = Apartados::findOne(['id_apartado' => $apartadoUltimo->id_apartado])->id_tema;
+                                                            // echo ($temaActual);
+                                                        ?>
 
                                                     <?php } ?>
                                             </p>

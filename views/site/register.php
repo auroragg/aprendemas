@@ -14,8 +14,8 @@ use yii\db\ActiveRecord;
  'enableAjaxValidation' => true,
 ]);
 ?>
-<div class="form-group">
- <?= $form->field($model, "username")->input("text") ?>
+<div class="form-group" name="contenedor1">
+ <?= $form->field($model, "username")->input("text", ["id" => "nombre"]) ?>
 </div>
 
 <div class="form-group">
@@ -30,6 +30,6 @@ use yii\db\ActiveRecord;
  <?= $form->field($model, "password_repeat")->input("password") ?>
 </div>
 
-<?= Html::submitButton("Register", ["class" => "btn btn-primary"]) ?>
+<?= Html::submitButton("Register", ["class" => "btn btn-primary reg"]) ?>
 
 <?php $form->end() ?>

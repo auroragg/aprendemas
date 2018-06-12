@@ -216,7 +216,7 @@ insert into sesiones_apartados (id_sesion, id_apartado, finalizado) values (2, 1
 insert into sesiones_apartados (id_sesion, id_apartado, finalizado) values (3, 1, false);
 insert into sesiones_apartados (id_sesion, id_apartado, finalizado) values (1, 2, false);
 insert into sesiones_apartados (id_sesion, id_apartado, finalizado) values (1, 4, true);
-insert into sesiones_apartados (id_sesion, id_apartado, finalizado) values (1, 6, true);
+insert into sesiones_apartados (id_sesion, id_apartado, finalizado) values (2, 2, true);
 
 create table examen (
   id_examen bigserial constraint pk_examen primary key,

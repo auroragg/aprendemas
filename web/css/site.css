@@ -126,6 +126,14 @@ a.desc:after {
         width: 70px;
         height: 40px;
     }
+    #logo:hover {
+        /* width: 50px; */
+        border: 2px solid blue;
+        -webkit-transform: rotate(50deg);
+        -moz-transform: rotate(50deg);
+        -o-transform: rotate(50deg);
+        -ms-transform: rotate(50deg);
+    }
 
     /* .nav-mod{
         background-color: #FFFFFF;
@@ -133,8 +141,37 @@ a.desc:after {
     } */
     .banderas {
         width: 64px;
-        border-radius: 10%;
+        border-radius: 50%;
+        transition: width 2s;
+        -webkit-transition: width 2s;
+        -moz-transition: width 2s;
+        -o-transition: width 2s;
+        -ms-transition: width 2s;
     }
+
+    .banderas:hover {
+        width: 100px;
+    }
+
+    #idiomaTema {
+        width: 50px;
+        float: right;
+        border: 2px solid yellow;
+        -webkit-animation-name: color;
+        -webkit-animation-duration: 6s;
+        animation-name: color;
+        animation-duration: 6s;
+    }
+    @-webkit-keyframes color {
+        from{border-color: : yellow;}
+        to {border-color: red;}
+    }
+    @keyframes color {
+        from{border-color: yellow;}
+        to {border-color: red;}
+    }
+
+
 
     .banderasApagadas {
         opacity: 0.4;
@@ -172,6 +209,7 @@ a.desc:after {
     filter: drop-shadow(2px 2px 3px #000);
 }
 
+
 /* TEXTOS */
 .izquierda {
     float: left;
@@ -182,13 +220,23 @@ a.desc:after {
     text-align: center;
 }
 
+.descripcion_tema{
+    min-height: 80px;
+}
+
 .temaBox{
     border: 4px groove black;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .temaBoxInactivo{
     border: 4px groove black;
     opacity: 0.4;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .finalizado{
@@ -196,4 +244,34 @@ a.desc:after {
 }
 .noFinalizado{
     border: 4px groove red;
+}
+/*plugin*/
+.circular-progress-bar {
+	  position: relative;
+	  margin: 0 auto;
+	  transform: rotate(-90deg);
+	}
+	.progress-percentage, .progress-text {
+	  position: absolute;
+	  width: 100%;
+	  top: 50%;
+	  left: 50%;
+	  transform: translate(-50%, -50%) rotate(90deg);
+	  text-align: center;
+	  padding: 0px 60px;
+	}
+	.progress-percentage {
+	  font-size: 40px;
+	  left: 60%;
+	}
+	.progress-text {
+	  left: 35%;
+	  color: #585858;
+	  font-size: 21px;
+	}
+/*resoluciones*/
+@media screen and (max-width: 900px) {
+    .temas-lateral{
+        display: none;
+    }
 }

@@ -220,15 +220,17 @@ class SiteController extends Controller
         $haySesiones = Sesiones::findAll(['id_usuario' => Yii::$app->user->getId()]);
 
         foreach ($idiomas as $key) {
-            $htmlStr[] = '<div class="col-xs-6 col-md-2 col-bg-2 descIdioma" id=idioma' . $key->id_idioma . '>
+            $htmlStr[] = '<div class="col-xs-6 col-md-2 col-bg-2 descIdioma" itemscope itemtype="http://schema.org/Language" id="idioma' . $key->id_idioma . '">
                 <div class="col-xs-12">
                 <script type="text/javascript" >
                 document.getElementById("idioma' . $key->id_idioma . '").onclick = function(){location.assign("/index.php?r=sesiones/existesesion&id_idioma=' . $key->id_idioma . '");};
                 </script>
-                    <img id="' . $key->descripcion . '" class="banderas" src="' . $key->icono . '" title="' . $key->descripcion . '" />
+                    <figure>
+                        <img id="' . $key->descripcion . '" class="banderas" itemprop="image" src="' . $key->icono . '" title="' . $key->descripcion . '" />
+                    </figure>
                 </div>
                 <div class="col-xs-12 descIdioma">
-                    <p>' . $key->descripcion . '</p>
+                    <p itemprop="name">' . $key->descripcion . '</p>
                 </div>
             </div>';
         }
