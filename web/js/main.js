@@ -48,11 +48,15 @@ $(document).ready(function(){
         /*Guardando el dato en el LocalStorage*/
         localStorage.setItem("Nombre", nom);
         /*Limpia el input*/
-        document.getElementById("nombre").value = "";
+        //document.getElementById("nombre").value = "";
 
         /*para obtener los datos guardados*/
         var nombre = localStorage.getItem("Nombre");
         //alert(nombre);
+    });
+
+    $("#empezar").on("click", function() {
+        window.location.href = "http://localhost:8080/index.php";
     });
 
 

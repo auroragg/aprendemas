@@ -15,7 +15,7 @@ use yii\db\ActiveRecord;
 ]);
 ?>
 <div class="form-group" name="contenedor1">
- <?= $form->field($model, "username")->input("text", ["id" => "nombre"]) ?>
+ <?= $form->field($model, "username")->input("text", ['id'=>"nombre"]) ?>
 </div>
 
 <div class="form-group">

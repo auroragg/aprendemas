@@ -18,12 +18,13 @@ $(document).ready(function(){
                 $.get('index.php?r=respuestas/correcta&id_respuesta=' + value.id, function(data) {
                     correcto = jQuery.parseJSON(data);
                     if (correcto) verd++;
+                    //alert(verd);
                     $.get('index.php?r=resultados/crear&id_sesion_apartado=' + ses_apart.id_sesion_apartado + '&id_pregunta=' + value.name + '&id_respuesta=' + value.id + '&correcto=' + correcto, function(data) {
                             resultado = jQuery.parseJSON(data);
 
                     });
                 }).done (function() {
-
+                     //$(window.opener.document).find(".puntuacion_apart").children("div").remove();
                     var progress_circle = $(window.opener.document).find(".my-progress-bar").circularProgress({
                     // options here
                         color: "#04B431",

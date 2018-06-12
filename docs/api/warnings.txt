@@ -58,14 +58,14 @@ Array
 
     [8] => Array
         (
-            [line] => 28
+            [line] => 29
             [file] => ./assets/AppAsset.php
             [message] => No docblock for element '$depends'
         )
 
     [9] => Array
         (
-            [line] => 28
+            [line] => 29
             [file] => ./assets/AppAsset.php
             [message] => No short description for element '$depends'
         )

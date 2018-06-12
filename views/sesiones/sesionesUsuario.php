@@ -25,11 +25,11 @@ $this->params['breadcrumbs'][] = $this->title;
             //$idioma = $sesion->sesion->id_idioma;
             //var_dump($idioma); die();
             $temas = Temas::findAll(['id_idioma' => $sesion->id_idioma]);
-            ?><div class="col-md-3"><a href="/index.php?r=temas/muestratemas&id_sesion=<?php echo $sesion->id_sesion?>">
-                                        <img <?php if ($sesion->fin) {
+            ?><section class="col-md-3"><a href="/index.php?r=temas/muestratemas&id_sesion=<?php echo $sesion->id_sesion?>">
+                                        <figure><img <?php if ($sesion->fin) {
                                                 echo 'class="banderasApagadasBg"';
                                             } else {
-                                                echo 'class="banderasBg"'; } ?> src="<?= $sesion->icono ?>" /></a>
+                                                echo 'class="banderasBg"'; } ?> src="<?= $sesion->icono ?>" /></figure></a>
                                         <div>
                                             <br>
                                             <p <?php if ($sesion->fin) {?> >
@@ -51,7 +51,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                                     <?php } ?>
                                             </p>
                                         </div>
-                </div>
+                </section>
 
     <?php }
     ?>

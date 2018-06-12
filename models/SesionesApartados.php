@@ -34,7 +34,7 @@ class SesionesApartados extends \yii\db\ActiveRecord
     {
         return [
             [['id_sesion', 'id_apartado'], 'default', 'value' => null],
-            [['id_sesion', 'id_apartado'], 'integer'],
+            [['id_sesion', 'id_apartado', 'nota'], 'integer'],
             [['finalizado'], 'boolean'],
             [['id_apartado'], 'exist', 'skipOnError' => true, 'targetClass' => Apartados::className(), 'targetAttribute' => ['id_apartado' => 'id_apartado']],
             [['id_sesion'], 'exist', 'skipOnError' => true, 'targetClass' => Sesiones::className(), 'targetAttribute' => ['id_sesion' => 'id_sesion']],

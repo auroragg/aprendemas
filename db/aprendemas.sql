@@ -208,7 +208,8 @@ create table sesiones_apartados (
   id_sesion_apartado bigserial constraint pk_sesiones_apartados primary key,
   id_sesion bigint references sesiones (id_sesion) on delete no action on update cascade,
   id_apartado bigint references apartados (id_apartado) on delete no action on update cascade,
-  finalizado boolean not null default false
+  finalizado boolean not null default false,
+  nota integer
 );
 
 insert into sesiones_apartados (id_sesion, id_apartado, finalizado) values (1, 1, false);

@@ -220,11 +220,15 @@ class SiteController extends Controller
         $haySesiones = Sesiones::findAll(['id_usuario' => Yii::$app->user->getId()]);
 
         foreach ($idiomas as $key) {
-            $htmlStr[] = '<div class="col-xs-6 col-md-2 col-bg-2 descIdioma" itemscope itemtype="http://schema.org/Language" id="idioma' . $key->id_idioma . '">
+            $htmlStr[] = '<section class="col-xs-6 col-md-2 col-bg-2 descIdioma" itemscope itemtype="http://schema.org/Language" id="idioma' . $key->id_idioma . '">
                 <div class="col-xs-12">
-                <script type="text/javascript" >
-                document.getElementById("idioma' . $key->id_idioma . '").onclick = function(){location.assign("/index.php?r=sesiones/existesesion&id_idioma=' . $key->id_idioma . '");};
-                </script>
+                <script type="text/javascript" >';
+            if (!$logueado) {
+                $htmlStr[] = 'document.getElementById("idioma' . $key->id_idioma . '").onclick = function(){location.assign("/index.php?r=sesiones/existesesion&id_idioma=' . $key->id_idioma . '");}';
+            } else {
+                $htmlStr[] = 'document.getElementById("idioma' . $key->id_idioma . '").onclick = function(){location.assign("/index.php?r=site/login");}';
+            };
+            $htmlStr[] = '</script>
                     <figure>
                         <img id="' . $key->descripcion . '" class="banderas" itemprop="image" src="' . $key->icono . '" title="' . $key->descripcion . '" />
                     </figure>
@@ -232,7 +236,7 @@ class SiteController extends Controller
                 <div class="col-xs-12 descIdioma">
                     <p itemprop="name">' . $key->descripcion . '</p>
                 </div>
-            </div>';
+            </section>';
         }
 
         $htmlResult = implode($htmlStr);
@@ -314,6 +318,21 @@ class SiteController extends Controller
      */
     public function actionAbout()
     {
-        return $this->render('about');
+        $htmlStr[]= '<div class="jumbotron"></div>' .
+        '<section">' .
+            '<h4>AprendeMas</h4>' .
+            '<p>Es una página web que ofrece cursos de diferentes idiomas a sus usuarios.
+                </br>Los alumnos pueden registrase de forma gratuita.
+                </br>Es una manera de aprender nuevos idiomas donde y cuando quieras.
+            </p>' .
+            '<button class="btn btn-lg btn-success boton-sombra" id="empezar">Empieza ahora</button>' .
+        '</section>';
+
+        $htmlResult = implode($htmlStr);
+
+
+            return $this->render('about', [
+                'info' => $htmlResult,
+            ]);
     }
 }
