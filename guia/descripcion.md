@@ -1,24 +1,22 @@
 # Descripción general del proyecto
 
-Explicar.
+
 
 ## Funcionalidad principal de la aplicación
 
-Explicar.
+La funcionalidad principal de la aplicación es ofrecer de una forma fácil e intuitiva la oportunidad de aprender nuevos idiomas.
+
+Los usuarios logueados accederán a la aplicación, y podrán estudiar uno o varios idiomas, pudiendo acceder a sus temas y apartados. Y finalmente podrán realizar un examen (test) final y ver su nota en ese apartado.
 
 ## Objetivos generales
 
-A diferencia de los casos de uso, los objetivos no tienen principio ni fin.
+1-OB1: Registrar nuevos usuarios
 
-Por ejemplo:
-
-* Objetivo: "gestionar los alquileres y las devoluciones de las películas".
-* Casos de uso: "alquilar una película", "devolver una película".
 
 ## URL del repositorio
 
-[https://github.com/ricpelo/proyecto](https://github.com/ricpelo/proyecto)
+https://github.com/auroragg/aprendemas
 
 ## URL de la documentación
 
-[https://ricpelo.github.io/proyecto](https://ricpelo.github.io/proyecto)
+https://auroragg.github.io/aprendemas
