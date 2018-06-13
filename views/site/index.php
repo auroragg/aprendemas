@@ -11,9 +11,7 @@ $this->title = 'AprendeMas';
 <div class="site-index">
 
     <section class="jumbotron">
-        <h1>Habla cualquier idioma</h1>
 
-        <p class="lead">dedicando sólo diez minutos al día</p>
 
         <?php if(!$logueado) {
                     if ($haySesiones != null) {?>

@@ -41,20 +41,25 @@ $(document).ready(function(){
     });
 
     //local storage
-    $('.reg').click(function(){
+    $('#login-button').click(function(){
         /*Captura de datos escrito en el input*/
-        var nom = document.getElementById("nombre").value;
-
+        var nom = document.getElementById("login");
+        var pass = document.getElementById("pass");
         /*Guardando el dato en el LocalStorage*/
-        localStorage.setItem("Nombre", nom);
+        localStorage.setItem("nom", nom.value);
+        localStorage.setItem("pass", pass.value);
         /*Limpia el input*/
         //document.getElementById("nombre").value = "";
-
-        /*para obtener los datos guardados*/
-        var nombre = localStorage.getItem("Nombre");
-        //alert(nombre);
+        var storedNom = localStorage.getItem('nom');
+        var storedPw = localStorage.getItem('pass');
+        if (nom.value == storedNom){
+            alert(storedPw);
+            document.getElementById("pass").innerHTML = storedPw;
+        }
     });
 
+
+    //cuando hago click en el boton empezar cuando estamos en SiteController/about
     $("#empezar").on("click", function() {
         window.location.href = "http://localhost:8080/index.php";
     });
