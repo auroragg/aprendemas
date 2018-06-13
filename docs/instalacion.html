@@ -52,10 +52,10 @@
 <li><a href="#en-la-nube">En la nube</a></li></ol></div>
 <p>﻿# Instrucciones de instalación y despliegue</p>
 <h2>En local <span id="en-local"></span><a href="#en-local" class="hashlink">&para;</a></h2><p>Para la instalación de la aplicación en local son necesarios una serie de requisitos:</p>
-<pre><code class="hljs ">• php &gt;= 7.1.11 
-• PostgreSQL &gt;= 9.5 
-• composer 
-• Servidor bien configurado, por ejemplo Apache2 
+<pre><code class="hljs ">• php &gt;= 7.1.11
+• PostgreSQL &gt;= 9.5
+• composer
+• Servidor bien configurado, por ejemplo Apache2
 </code></pre>
 <p>Una vez cumplidos estos requisitos deberás realizar los siguientes pasos para llevar a cabo la instalación de la aplicación:</p>
 <pre><code class="hljs sql">1. Tener el Apache2 (u otro servidor) configurado con un nombre de dominio creado (por ejemplo: aprendemas.local) y enlazado a aprendemas/web/.
@@ -64,15 +64,19 @@
 <span class="hljs-number">4.</span> Instalar PostgreSQL y ejecutar los siguientes comandos desde la raiz del proyecto: cd db ./<span class="hljs-keyword">create</span>.sh ./<span class="hljs-keyword">load</span>.sh &gt; Después de realizar estos comandos se habrá creado una base de datos llamada aprendemas con un usuario aprendemas y contraseña arpendemas.
 <span class="hljs-number">5.</span> Cambiar la siguiente configuración dentro del proyecto:
     ◦ Correo electrónico:
-        ▪ Cambiar el correo electrónico del administrador en /config/params.php. 
-        ▪ SMTP_PASS: crear esta <span class="hljs-keyword">variable</span> de entorno para la contraseña del correo electrónico. 
-    ◦ Cambiar el nombre del usuario administrador en /models/Usuario.php dentro de la función esAdmin(). 
+        ▪ Cambiar el correo electrónico del administrador en /config/params.php.
+        ▪ SMTP_PASS: crear esta <span class="hljs-keyword">variable</span> de entorno para la contraseña del correo electrónico.
+    ◦ Cambiar el nombre del usuario administrador en /models/Usuario.php dentro de la función esAdmin().
 </span></code></pre>
 <h2>En la nube <span id="en-la-nube"></span><a href="#en-la-nube" class="hashlink">&para;</a></h2><p>Para la instalación de la aplicación en la nube Heroku serán necesarios realizar los siguientes pasos:</p>
 <pre><code class="hljs markdown"><span class="hljs-bullet">1. </span>Tener una cuenta en Heroku y crear una aplicación. Además, debes instalar el comando heroku para trabajar por linea de comandos o bien hacerlo desde la página web.
-<span class="hljs-bullet">2. </span>Crear las mismas variables de entorno que tengas en local añadiendole una más, la cual es: &gt; YII_ENV=prod
-<span class="hljs-bullet">3. </span>Añadir el addon heroku-postgresql y crear la base de datos de la aplicación en la nube.
-<span class="hljs-bullet">4. </span>Ejecutar los siguientes comandos: cd aprendemas heroku login heroku git:remote -a nombre<span class="hljs-emphasis">_aplicacion_</span>heroku git push heroku master
+<span class="hljs-bullet">2. </span>Añadir el addon heroku-postgresql
+<span class="hljs-bullet">3. </span>Crear la base de datos de la aplicación en la nube:
+<span class="hljs-code">    Para inyectar la base de datos hacemos: heroku psql &lt; db/aprendemas.sql</span>
+<span class="hljs-bullet">4. </span>Ejecutar los siguientes comandos:
+<span class="hljs-code">    cd aprendemas heroku login (sólo hace falta una vez)</span>
+<span class="hljs-code">    heroku git:remote -a nombre_aplicacion_heroku</span>
+<span class="hljs-code">    git push heroku master</span>
 </code></pre>
         <div class="toplink"><a href="#" class="h1" title="go to top"><span class="glyphicon glyphicon-arrow-up"></a></div>
     </div>
@@ -82,7 +86,7 @@
 </div>
 
 <footer class="footer">
-        <p class="pull-right"><small>Page generated on Wed, 13 Jun 2018 06:30:36 +0000</small></p>
+        <p class="pull-right"><small>Page generated on Wed, 13 Jun 2018 11:28:13 +0000</small></p>
     Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
 
 <script>jQuery(function ($) {
