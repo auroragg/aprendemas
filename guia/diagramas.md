@@ -6,4 +6,4 @@ Incluir.
 
 ## Diagramas de estructura lógica de datos
 
-Incluir.
+![Estructura de la Base de Datos](imagenes/bbdd.png)

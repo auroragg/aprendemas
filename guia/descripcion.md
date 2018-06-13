@@ -11,7 +11,7 @@ Los usuarios logueados accederán a la aplicación, y podrán estudiar uno o var
 ## Objetivos generales
 
 1-OB1: Registrar nuevos usuarios
-
+2-OB2: Estudiar idiomas
 
 ## URL del repositorio
 
