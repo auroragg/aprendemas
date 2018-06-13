@@ -24,7 +24,7 @@ $(document).ready(function(){
 
                     });
                 }).done (function() {
-                     //$(window.opener.document).find(".puntuacion_apart").children("div").remove();
+                    $("#nota").empty();
                     var progress_circle = $(window.opener.document).find(".my-progress-bar").circularProgress({
                     // options here
                         color: "#04B431",

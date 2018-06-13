@@ -3,7 +3,7 @@ var id_apartado;
 $(document).ready(function(){
     $("#test").click(function(){
         //creación dinámica del progress bar
-        $(".puntuacion_apart").append("<div id='nota' class='my-progress-bar'></div>");
+        //$(".puntuacion_apart").append("<div id='nota' class='my-progress-bar'></div>");
         //Crear ventana para el test
         id_apartado = $("#test").attr('data-apartado');
         id_sesion = $("#test").attr('data-sesion');

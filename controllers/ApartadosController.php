@@ -83,7 +83,7 @@ class ApartadosController extends Controller
                 '</div>' .
                 '<div class="col-sm-3 puntuacion_apart">' .
                     '<p>Puntuación</p>' .
-
+                    '<div id="nota" class="my-progress-bar"></div>' .
                 '</div>' .
             '</article>' .
             '<article class="col-sm-12" id="contenido_apart">' .
