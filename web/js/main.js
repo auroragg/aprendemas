@@ -61,7 +61,7 @@ $(document).ready(function(){
 
     //cuando hago click en el boton empezar cuando estamos en SiteController/about
     $("#empezar").on("click", function() {
-        window.location.href = "http://localhost:8080/index.php";
+        window.location.href = "/index.php";
     });
 
 

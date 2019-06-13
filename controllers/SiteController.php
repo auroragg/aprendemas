@@ -134,7 +134,7 @@ class SiteController extends Controller
 
      $subject = "Confirmar registro";
      $body = "<h1>Haga click en el siguiente enlace para finalizar tu registro</h1>";
-     $body .= "<a href='http://localhost:8080/index.php?r=site/confirm&id=".$id."&authkey=".$authKey."'>Confirmar</a>";
+     $body .= "<a href='/index.php?r=site/confirm&id=".$id."&authkey=".$authKey."'>Confirmar</a>";
 
      //Enviamos el correo
      Yii::$app->mailer->compose()
